@@ -1,0 +1,13 @@
+# Ignore all files in data/, plots/, and out/, including subdirectories
+data/**/*
+plots/**/*
+out/**/*
+
+# keep the directory structures
+!data/
+!plots/
+!out/
+!data/**/
+!plots/**/
+!out/**/
+

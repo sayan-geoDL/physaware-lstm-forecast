@@ -1,0 +1,54 @@
+# === 1. Data Download Configuration ===
+download_data: true   # Set to true to download fresh data, false to skip
+station_id: '03772'
+# === 2. Date Ranges ===
+dates:
+  train:
+    start: '1973-01-01'
+    end: '2014-08-07'
+  test:
+    start: '2014-08-08'
+    end: '2020-12-31'
+  predict:
+    start: '2021-01-01'
+    end: '2024-12-31'
+# ===3. Filling of missing values
+filling_parameters:
+  type: 'smart'        # filling missing data by either 'climatology', 'interpolate' or 'smart'
+  gap_threshold: 4     # if type is smart then if continuous gap below gap_threshold will be filled by interpolation if above gap_threshold will use climatology
+# === 4. Scaling Configuration ===
+scaling:
+  magnitude_threshold_percent: 99.5  # Threshold percentile for wind magnitude
+
+# === 5. Grid Search Hyperparameters and cross validation ===
+# Accepts either lists ( [a, b, c] ) or tuples ( (a, b, c) ) in YAML
+input_window: 8 # look back time for the LSTM model
+fold_no: 5 # No of folds for expanding window cross validation
+epochs: 300 # Number of epochs for each cross validation testing
+validation_size: 10 # percentage of training data used for validation (default is 10 %)
+early_stop: 15 # early stopping patience , default is 10
+device: 'cuda' # to use 'cpu' or 'cuda' for gpu
+grid_search:
+  learning_rate: [0.0001, 0.0005, 0.001]     # Can also be (0.0001, 0.0005, 0.001)
+  weight_decay: (0.0, 0.0015, 0.0005)        # Treated as tuple if parentheses used can use list and put None for no L2 Regularisation
+  hidden_size: [32, 64, 128]
+  num_layers: (1, 3, 1)
+
+
+# === 6. Cross-validation Result Selection ===
+plot_cv_rank: 1  # Rank from CV results to be plotted
+
+# === 7. Training Model Configuration ===
+training:
+  use_rank: true  # If true, 'rank' below will be used. If false, use individual params below.
+  rank: 5  # Rank to use from CV results if 'use_rank' is true
+
+  # Used only if 'use_rank' is false
+  params:
+    learning_rate: 0.0005
+    weight_decay: 0.0005
+    hidden_size: 64
+    num_layers: 2
+
+# === 8. Prediction Toggle ===
+run_prediction: true  # Set to false to skip prediction
