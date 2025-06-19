@@ -1,13 +1,15 @@
-# Ignore all files in data/, plots/, and out/, including subdirectories
-data/**/*
-plots/**/*
-out/**/*
+# Ignore everything in data but not .gitkeep
+data/*
+!data/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
 
-# keep the directory structures
-!data/
-!plots/
-!out/
-!data/**/
-!plots/**/
-!out/**/
+# Ignore everything in out but not .gitkeep
+out/*
+!out/.gitkeep
+out/train_test/*
+!out/train_test/.gitkeep
 
+# Ignore everything in plots but not .gitkeep
+plots/*
+!plots/.gitkeep
