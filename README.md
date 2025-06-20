@@ -1,15 +1,6 @@
 # LSTM model for station level Temperature prediction
 
-This repository contains an Long Short-Term Memory (LSTM) based model pipeline for temperature prediction consisting of 5 stages:
-
-- Preprocessing of Data (`process`)
-- Cross validation and performance evaluation for custom grid searches for various hyperparameters (`grid_search_cv`)
-- Plotting of cross validation results of selective hyperparameter combinations (`cv_plot`)
-- Training and testing (`train`)
-- Prediction of Temperature (`predict`)
-- And optional running of the full pipeline (`all`)
-
-Each stage uses separate scripts modularized and orchestrated via `main.py`.
+This repository presents a modular, production-ready pipeline built on Long Short-Term Memory (LSTM) networks for station-level temperature forecasting. The system automates data retrieval, preprocessing, hyperparameter tuning via cross-validation, model training, evaluation, and prediction in a streamlined workflow. Each stage uses separate scripts modularized and orchestrated via `main.py`.
 
 
 ---
@@ -17,6 +8,7 @@ Each stage uses separate scripts modularized and orchestrated via `main.py`.
 ## Table of Contents
 
 - [Overview](#overview)
+- [Skills Demonstrated](#skill_demo)
 - [Installation](#installation)
 - [Usage](#usage)
 - [The Model](#model)
@@ -33,23 +25,33 @@ Each stage uses separate scripts modularized and orchestrated via `main.py`.
 
 The pipeline leverages the [Meteostat API](https://dev.meteostat.net/) to retrieve hourly meteorological data for a specified station. It supports:
 
-- Climatology or interpolation based missing data filling.
+- Multiple strategies for handling missing data, including climatology-based, interpolation-based, or a hybrid approach that adapts based on the length of missing data gaps.
 - Smart normalization and wind speed decomposition (`u/v`).
 - Expanding-Window cross-validation with hyperparameter grid search.
-- Selective CV rank model plotting.
-- Training, testing, and inference with LSTM models.
+- Plotting of Loss curves for selective hyperparameter combos depending on a specialised ranking scheme.
+- Training, testing, and inference.
 
 
 Each step is orchestrated through a single CLI interface via `main.py`.
+## 💡 Skills Demonstrated
+
+- Time Series Forecasting using LSTM Networks
+- Walk-Forward Expanding Window Cross-Validation
+- Smart Handling of Missing Meteorological Data
+- Hyperparameter Optimization via Grid Search
+- Scalable ML Pipeline Design (YAML-based configs)
+- CLI-Driven Modular Codebase for Reusability
+- Model Evaluation using RMSE, R² and Visualization
+
 ### What is an LSTM?
 
-Long Short-Term Memory (LSTM) networks are a type of Recurrent Neural Network (RNN) capable of learning long-term dependencies. Unlike traditional neural networks, LSTMs are well-suited for time series forecasting tasks because they can retain information over long sequences and handle temporal dependencies. This makes them ideal for predicting variables like temperature, where current values depend heavily on previous trends.
+The core forecasting engine is an LSTM neural network implemented in PyTorch, selected for its proven ability to capture long-range temporal dependencies in weather patterns. Unlike traditional neural networks, LSTMs are well-suited for time series forecasting tasks because they can retain information over long sequences and handle temporal dependencies. This makes them ideal for predicting variables like temperature, where current values depend heavily on previous trends.
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/station-temp-lstm-pipeline.git
+   git clone https://github.com/sayan-geoDL/lstm-weather-pipeline.git
    cd station-temp-lstm-pipeline
    ```
 2. **(Optional) Create a virtual environment**
@@ -101,12 +103,12 @@ This is an LSTM Model, which will take in `n_step` number of look back days to p
      ```python
      overfit_score = val_mse + (0.5 * abs(val_mse - train_mse)) / train_mse
      ```
-   - Plots the box plot of the `overfit_score` for each grid parameters and saves them to `./plots/performance_boxplots.png`. Thereafter the user can chose other hyperparameter grids depending on
+   - Plots the box plot of the `overfit_score` for each grid parameters and saves them to `./plots/performance_boxplots.png`. Thereafter the user can choose other hyperparameter grids depending on
      the plots for further fine tuning of the grid and then decide upon a final combination of hyperparameters for training.
    - Save the combinations of hyperparameters to `./out/train_test/cv_result.csv` ranked according to lowest to highest overfit scores.
 4. **Plot of cross validation results (`cv_plot`)**
    - Plots the training and validation loss curves for each fold for a selected rank of model hyperparameters specified in `plot_cv_rank` by the user.
-   - This helps in visually determining whether any kind of overfitting is still present and then the user can move on to the trainig phase or go back to the grid search phase for further tuning of
+   - This helps in visually determining whether any kind of overfitting is still present and then the user can move on to the training phase or go back to the grid search phase for further tuning of
      hyperparameters
 5. **Training(`train`)**
    - Trains the model with selected rank of hyperparameter combination or a user defined hyperparameter on the full training data and saves it to `./out/final_model.pth`
@@ -188,7 +190,7 @@ run_prediction: true  # Set to false to skip prediction
 | Output File          | Description                                   |
 | -------------------- | --------------------------------------------- |
 | `train_test_daily.csv`| Processed daily data for training and testing|
-| `predict_daily.csv`  | Processed daily data for predicton            |
+| `predict_daily.csv`  | Processed daily data for prediction            |
 | `train_scaled.csv`   | Scaled training data                          |
 | `test_scaled.csv`    | Scaled test data                              |
 | `predict_scaled.csv` | Scaled prediction data                        |
@@ -212,7 +214,8 @@ run_prediction: true  # Set to false to skip prediction
 
 - Logs are saved to `./main.log` , making it easy to review pipeline execution details.
 ## Sample Results
-<h2 id="sample-results">📊 Sample Results</h2>
+The following is a sample result using `n_step=8 days` and a 5 fold walk-forward, expanding window cross validation approach.
+<h2 id="sample-results">📊 Sample Output Plots</h2>
 
 <p align="center">
   <img src="performance_boxplots.png" alt="Box plots" width="600"/>
@@ -224,13 +227,13 @@ run_prediction: true  # Set to false to skip prediction
   <img src="train_test_distribution.png" alt="Distributions" width="600"/>
 </p>
 
-<p align="center"><em>Figure 2: Distributions of observed and predicted values of training and testing phases.</em></p>
+<p align="center"><em>Figure 2: Histogram comparison of predicted vs. observed temperatures for both training and testing phases.</em></p>
 
 <p align="center">
   <img src="train_test_ts.png" alt="Individual time series" width="600"/>
 </p>
 
-<p align="center"><em>Figure 3: Individual observed and predicted time series of training and testing phases .</em></p>
+<p align="center"><em>Figure 3: Time series of observed vs. predicted temperature for the training and testing periods .</em></p>
 
 ## Data Sources
 

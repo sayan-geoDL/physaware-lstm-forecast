@@ -1,0 +1,718 @@
+2025-06-19 20:36:53,685 - INFO - Executing pipeline stage: all
+2025-06-19 20:36:53,685 - INFO - Starting data processing stage...
+2025-06-19 20:36:53,685 - INFO - Downloading station data as requested in config...
+2025-06-19 20:37:32,175 - INFO - Preprocessing and scaling training and testing data...
+2025-06-19 20:37:33,543 - INFO - Preprocessing and scaling prediction data...
+2025-06-19 20:37:33,651 - INFO - Data processing completed.
+2025-06-19 20:37:33,651 - INFO - Starting grid search and cross-validation...
+2025-06-19 20:37:37,759 - INFO - Total hyperparameter combinations: 4
+2025-06-19 20:37:42,764 - INFO - grid combo 1: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:37:47,329 - INFO - grid combo 2: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:37:47,623 - INFO - Early stopping at epoch 261, val_loss did not improve for 15 epochs
+2025-06-19 20:37:51,795 - INFO - grid combo 3: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:37:56,294 - INFO - grid combo 4: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:38:00,831 - INFO - grid combo 5: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:38:00,924 - INFO - Early stopping at epoch 74, val_loss did not improve for 15 epochs
+2025-06-19 20:38:05,162 - INFO - grid combo 6: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:38:05,253 - INFO - Early stopping at epoch 78, val_loss did not improve for 15 epochs
+2025-06-19 20:38:09,640 - INFO - grid combo 7: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:38:09,738 - INFO - Early stopping at epoch 83, val_loss did not improve for 15 epochs
+2025-06-19 20:38:14,140 - INFO - grid combo 8: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:38:14,246 - INFO - Early stopping at epoch 89, val_loss did not improve for 15 epochs
+2025-06-19 20:38:18,515 - INFO - grid combo 9: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:38:18,616 - INFO - Early stopping at epoch 89, val_loss did not improve for 15 epochs
+2025-06-19 20:38:22,876 - INFO - grid combo 10: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:38:22,943 - INFO - Early stopping at epoch 51, val_loss did not improve for 15 epochs
+2025-06-19 20:38:27,240 - INFO - grid combo 11: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:38:31,956 - INFO - grid combo 12: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:38:32,036 - INFO - Early stopping at epoch 52, val_loss did not improve for 15 epochs
+2025-06-19 20:38:36,561 - INFO - grid combo 13: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:38:36,626 - INFO - Early stopping at epoch 50, val_loss did not improve for 15 epochs
+2025-06-19 20:38:41,036 - INFO - grid combo 14: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:38:41,105 - INFO - Early stopping at epoch 54, val_loss did not improve for 15 epochs
+2025-06-19 20:38:45,435 - INFO - grid combo 15: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:38:45,638 - INFO - Early stopping at epoch 168, val_loss did not improve for 15 epochs
+2025-06-19 20:38:46,015 - INFO - Early stopping at epoch 172, val_loss did not improve for 15 epochs
+2025-06-19 20:38:48,117 - INFO - Early stopping at epoch 289, val_loss did not improve for 15 epochs
+2025-06-19 20:38:49,666 - INFO - grid combo 16: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:38:49,842 - INFO - Early stopping at epoch 154, val_loss did not improve for 15 epochs
+2025-06-19 20:38:50,256 - INFO - Early stopping at epoch 191, val_loss did not improve for 15 epochs
+2025-06-19 20:38:51,165 - INFO - Early stopping at epoch 295, val_loss did not improve for 15 epochs
+2025-06-19 20:38:53,934 - INFO - grid combo 17: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:38:54,106 - INFO - Early stopping at epoch 146, val_loss did not improve for 15 epochs
+2025-06-19 20:38:54,694 - INFO - Early stopping at epoch 275, val_loss did not improve for 15 epochs
+2025-06-19 20:38:58,433 - INFO - grid combo 18: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:39:03,104 - INFO - grid combo 19: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:39:03,156 - INFO - Early stopping at epoch 36, val_loss did not improve for 15 epochs
+2025-06-19 20:39:07,464 - INFO - grid combo 20: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:39:07,602 - INFO - Early stopping at epoch 103, val_loss did not improve for 15 epochs
+2025-06-19 20:39:07,927 - INFO - Early stopping at epoch 150, val_loss did not improve for 15 epochs
+2025-06-19 20:39:08,499 - INFO - Early stopping at epoch 181, val_loss did not improve for 15 epochs
+2025-06-19 20:39:09,076 - INFO - Early stopping at epoch 138, val_loss did not improve for 15 epochs
+2025-06-19 20:39:10,299 - INFO - Early stopping at epoch 236, val_loss did not improve for 15 epochs
+2025-06-19 20:39:10,315 - INFO - grid combo 21: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:39:10,480 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 20:39:10,792 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 20:39:11,294 - INFO - Early stopping at epoch 158, val_loss did not improve for 15 epochs
+2025-06-19 20:39:12,289 - INFO - Early stopping at epoch 245, val_loss did not improve for 15 epochs
+2025-06-19 20:39:13,747 - INFO - Early stopping at epoch 277, val_loss did not improve for 15 epochs
+2025-06-19 20:39:13,763 - INFO - grid combo 22: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:39:13,941 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 20:39:14,260 - INFO - Early stopping at epoch 146, val_loss did not improve for 15 epochs
+2025-06-19 20:39:14,801 - INFO - Early stopping at epoch 170, val_loss did not improve for 15 epochs
+2025-06-19 20:39:15,961 - INFO - Early stopping at epoch 283, val_loss did not improve for 15 epochs
+2025-06-19 20:39:17,524 - INFO - grid combo 23: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:39:22,215 - INFO - grid combo 24: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:39:22,307 - INFO - Early stopping at epoch 79, val_loss did not improve for 15 epochs
+2025-06-19 20:39:22,734 - INFO - Early stopping at epoch 194, val_loss did not improve for 15 epochs
+2025-06-19 20:39:23,536 - INFO - Early stopping at epoch 261, val_loss did not improve for 15 epochs
+2025-06-19 20:39:23,943 - INFO - Early stopping at epoch 98, val_loss did not improve for 15 epochs
+2025-06-19 20:39:24,832 - INFO - Early stopping at epoch 173, val_loss did not improve for 15 epochs
+2025-06-19 20:39:24,846 - INFO - grid combo 25: {'hidden_size': 50, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:39:25,172 - INFO - Early stopping at epoch 182, val_loss did not improve for 15 epochs
+2025-06-19 20:39:33,407 - INFO - grid combo 26: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:39:33,776 - INFO - Early stopping at epoch 207, val_loss did not improve for 15 epochs
+2025-06-19 20:39:42,017 - INFO - grid combo 27: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:39:42,404 - INFO - Early stopping at epoch 207, val_loss did not improve for 15 epochs
+2025-06-19 20:39:50,656 - INFO - grid combo 28: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:39:51,089 - INFO - Early stopping at epoch 242, val_loss did not improve for 15 epochs
+2025-06-19 20:39:59,363 - INFO - grid combo 29: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:40:08,214 - INFO - grid combo 30: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:40:08,323 - INFO - Early stopping at epoch 58, val_loss did not improve for 15 epochs
+2025-06-19 20:40:16,631 - INFO - grid combo 31: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:40:16,746 - INFO - Early stopping at epoch 59, val_loss did not improve for 15 epochs
+2025-06-19 20:40:25,054 - INFO - grid combo 32: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:40:25,161 - INFO - Early stopping at epoch 58, val_loss did not improve for 15 epochs
+2025-06-19 20:40:33,477 - INFO - grid combo 33: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:40:33,601 - INFO - Early stopping at epoch 67, val_loss did not improve for 15 epochs
+2025-06-19 20:40:41,827 - INFO - grid combo 34: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:40:41,951 - INFO - Early stopping at epoch 66, val_loss did not improve for 15 epochs
+2025-06-19 20:40:50,214 - INFO - grid combo 35: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:40:50,336 - INFO - Early stopping at epoch 64, val_loss did not improve for 15 epochs
+2025-06-19 20:40:58,697 - INFO - grid combo 36: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:41:07,580 - INFO - grid combo 37: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:41:07,703 - INFO - Early stopping at epoch 66, val_loss did not improve for 15 epochs
+2025-06-19 20:41:16,028 - INFO - grid combo 38: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:41:24,853 - INFO - grid combo 39: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:41:24,950 - INFO - Early stopping at epoch 47, val_loss did not improve for 15 epochs
+2025-06-19 20:41:33,215 - INFO - grid combo 40: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:41:33,462 - INFO - Early stopping at epoch 136, val_loss did not improve for 15 epochs
+2025-06-19 20:41:33,997 - INFO - Early stopping at epoch 138, val_loss did not improve for 15 epochs
+2025-06-19 20:41:35,243 - INFO - Early stopping at epoch 206, val_loss did not improve for 15 epochs
+2025-06-19 20:41:37,122 - INFO - Early stopping at epoch 233, val_loss did not improve for 15 epochs
+2025-06-19 20:41:39,533 - INFO - Early stopping at epoch 241, val_loss did not improve for 15 epochs
+2025-06-19 20:41:39,549 - INFO - grid combo 41: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:41:39,851 - INFO - Early stopping at epoch 165, val_loss did not improve for 15 epochs
+2025-06-19 20:41:40,480 - INFO - Early stopping at epoch 160, val_loss did not improve for 15 epochs
+2025-06-19 20:41:41,578 - INFO - Early stopping at epoch 180, val_loss did not improve for 15 epochs
+2025-06-19 20:41:43,728 - INFO - Early stopping at epoch 267, val_loss did not improve for 15 epochs
+2025-06-19 20:41:46,709 - INFO - grid combo 42: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:41:47,013 - INFO - Early stopping at epoch 162, val_loss did not improve for 15 epochs
+2025-06-19 20:41:47,730 - INFO - Early stopping at epoch 184, val_loss did not improve for 15 epochs
+2025-06-19 20:41:48,828 - INFO - Early stopping at epoch 182, val_loss did not improve for 15 epochs
+2025-06-19 20:41:54,213 - INFO - grid combo 43: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:42:03,060 - INFO - grid combo 44: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:42:11,869 - INFO - grid combo 45: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:42:12,079 - INFO - Early stopping at epoch 115, val_loss did not improve for 15 epochs
+2025-06-19 20:42:12,521 - INFO - Early stopping at epoch 111, val_loss did not improve for 15 epochs
+2025-06-19 20:42:13,475 - INFO - Early stopping at epoch 157, val_loss did not improve for 15 epochs
+2025-06-19 20:42:14,723 - INFO - Early stopping at epoch 154, val_loss did not improve for 15 epochs
+2025-06-19 20:42:16,815 - INFO - Early stopping at epoch 210, val_loss did not improve for 15 epochs
+2025-06-19 20:42:16,831 - INFO - grid combo 46: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:42:17,039 - INFO - Early stopping at epoch 113, val_loss did not improve for 15 epochs
+2025-06-19 20:42:17,679 - INFO - Early stopping at epoch 161, val_loss did not improve for 15 epochs
+2025-06-19 20:42:18,643 - INFO - Early stopping at epoch 158, val_loss did not improve for 15 epochs
+2025-06-19 20:42:20,512 - INFO - Early stopping at epoch 233, val_loss did not improve for 15 epochs
+2025-06-19 20:42:22,577 - INFO - Early stopping at epoch 208, val_loss did not improve for 15 epochs
+2025-06-19 20:42:22,594 - INFO - grid combo 47: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:42:22,846 - INFO - Early stopping at epoch 137, val_loss did not improve for 15 epochs
+2025-06-19 20:42:23,529 - INFO - Early stopping at epoch 176, val_loss did not improve for 15 epochs
+2025-06-19 20:42:24,384 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 20:42:25,361 - INFO - Early stopping at epoch 120, val_loss did not improve for 15 epochs
+2025-06-19 20:42:27,358 - INFO - Early stopping at epoch 202, val_loss did not improve for 15 epochs
+2025-06-19 20:42:27,373 - INFO - grid combo 48: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:42:27,819 - INFO - Early stopping at epoch 248, val_loss did not improve for 15 epochs
+2025-06-19 20:42:36,128 - INFO - grid combo 49: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:42:36,598 - INFO - Early stopping at epoch 264, val_loss did not improve for 15 epochs
+2025-06-19 20:42:37,347 - INFO - Early stopping at epoch 193, val_loss did not improve for 15 epochs
+2025-06-19 20:42:38,612 - INFO - Early stopping at epoch 213, val_loss did not improve for 15 epochs
+2025-06-19 20:42:39,764 - INFO - Early stopping at epoch 145, val_loss did not improve for 15 epochs
+2025-06-19 20:42:41,627 - INFO - Early stopping at epoch 190, val_loss did not improve for 15 epochs
+2025-06-19 20:42:41,644 - INFO - grid combo 50: {'hidden_size': 50, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:42:41,964 - INFO - Early stopping at epoch 280, val_loss did not improve for 15 epochs
+2025-06-19 20:42:46,611 - INFO - grid combo 51: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:42:46,916 - INFO - Early stopping at epoch 269, val_loss did not improve for 15 epochs
+2025-06-19 20:42:51,524 - INFO - grid combo 52: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:42:56,497 - INFO - grid combo 53: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:43:01,420 - INFO - grid combo 54: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:43:06,390 - INFO - grid combo 55: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:43:06,491 - INFO - Early stopping at epoch 73, val_loss did not improve for 15 epochs
+2025-06-19 20:43:11,116 - INFO - grid combo 56: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:43:11,258 - INFO - Early stopping at epoch 75, val_loss did not improve for 15 epochs
+2025-06-19 20:43:15,883 - INFO - grid combo 57: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:43:16,001 - INFO - Early stopping at epoch 80, val_loss did not improve for 15 epochs
+2025-06-19 20:43:20,607 - INFO - grid combo 58: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:43:20,714 - INFO - Early stopping at epoch 75, val_loss did not improve for 15 epochs
+2025-06-19 20:43:25,424 - INFO - grid combo 59: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:43:25,519 - INFO - Early stopping at epoch 79, val_loss did not improve for 15 epochs
+2025-06-19 20:43:30,133 - INFO - grid combo 60: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:43:30,197 - INFO - Early stopping at epoch 48, val_loss did not improve for 15 epochs
+2025-06-19 20:43:34,853 - INFO - grid combo 61: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:43:39,974 - INFO - grid combo 62: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:43:45,038 - INFO - grid combo 63: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:43:45,104 - INFO - Early stopping at epoch 50, val_loss did not improve for 15 epochs
+2025-06-19 20:43:49,717 - INFO - grid combo 64: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:43:49,793 - INFO - Early stopping at epoch 53, val_loss did not improve for 15 epochs
+2025-06-19 20:43:54,416 - INFO - grid combo 65: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:43:54,626 - INFO - Early stopping at epoch 162, val_loss did not improve for 15 epochs
+2025-06-19 20:43:54,983 - INFO - Early stopping at epoch 154, val_loss did not improve for 15 epochs
+2025-06-19 20:43:55,726 - INFO - Early stopping at epoch 223, val_loss did not improve for 15 epochs
+2025-06-19 20:43:56,917 - INFO - Early stopping at epoch 270, val_loss did not improve for 15 epochs
+2025-06-19 20:43:58,593 - INFO - Early stopping at epoch 300, val_loss did not improve for 15 epochs
+2025-06-19 20:43:58,607 - INFO - grid combo 66: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:43:58,831 - INFO - Early stopping at epoch 183, val_loss did not improve for 15 epochs
+2025-06-19 20:43:59,272 - INFO - Early stopping at epoch 192, val_loss did not improve for 15 epochs
+2025-06-19 20:44:00,110 - INFO - Early stopping at epoch 252, val_loss did not improve for 15 epochs
+2025-06-19 20:44:03,091 - INFO - grid combo 67: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:44:03,383 - INFO - Early stopping at epoch 221, val_loss did not improve for 15 epochs
+2025-06-19 20:44:03,976 - INFO - Early stopping at epoch 251, val_loss did not improve for 15 epochs
+2025-06-19 20:44:04,965 - INFO - Early stopping at epoch 294, val_loss did not improve for 15 epochs
+2025-06-19 20:44:07,927 - INFO - grid combo 68: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:44:12,899 - INFO - grid combo 69: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:44:16,080 - INFO - Early stopping at epoch 267, val_loss did not improve for 15 epochs
+2025-06-19 20:44:17,735 - INFO - grid combo 70: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:44:17,844 - INFO - Early stopping at epoch 91, val_loss did not improve for 15 epochs
+2025-06-19 20:44:18,140 - INFO - Early stopping at epoch 125, val_loss did not improve for 15 epochs
+2025-06-19 20:44:18,677 - INFO - Early stopping at epoch 160, val_loss did not improve for 15 epochs
+2025-06-19 20:44:19,531 - INFO - Early stopping at epoch 195, val_loss did not improve for 15 epochs
+2025-06-19 20:44:20,812 - INFO - Early stopping at epoch 231, val_loss did not improve for 15 epochs
+2025-06-19 20:44:20,828 - INFO - grid combo 71: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:44:20,977 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 20:44:21,290 - INFO - Early stopping at epoch 136, val_loss did not improve for 15 epochs
+2025-06-19 20:44:21,886 - INFO - Early stopping at epoch 178, val_loss did not improve for 15 epochs
+2025-06-19 20:44:24,701 - INFO - Early stopping at epoch 268, val_loss did not improve for 15 epochs
+2025-06-19 20:44:24,717 - INFO - grid combo 72: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:44:24,854 - INFO - Early stopping at epoch 101, val_loss did not improve for 15 epochs
+2025-06-19 20:44:25,297 - INFO - Early stopping at epoch 186, val_loss did not improve for 15 epochs
+2025-06-19 20:44:25,881 - INFO - Early stopping at epoch 177, val_loss did not improve for 15 epochs
+2025-06-19 20:44:26,843 - INFO - Early stopping at epoch 218, val_loss did not improve for 15 epochs
+2025-06-19 20:44:28,517 - INFO - grid combo 73: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:44:28,798 - INFO - Early stopping at epoch 234, val_loss did not improve for 15 epochs
+2025-06-19 20:44:33,396 - INFO - grid combo 74: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:44:33,488 - INFO - Early stopping at epoch 75, val_loss did not improve for 15 epochs
+2025-06-19 20:44:33,988 - INFO - Early stopping at epoch 215, val_loss did not improve for 15 epochs
+2025-06-19 20:44:34,560 - INFO - Early stopping at epoch 173, val_loss did not improve for 15 epochs
+2025-06-19 20:44:34,952 - INFO - Early stopping at epoch 88, val_loss did not improve for 15 epochs
+2025-06-19 20:44:36,145 - INFO - Early stopping at epoch 218, val_loss did not improve for 15 epochs
+2025-06-19 20:44:36,161 - INFO - grid combo 75: {'hidden_size': 55, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:44:36,547 - INFO - Early stopping at epoch 180, val_loss did not improve for 15 epochs
+2025-06-19 20:44:45,319 - INFO - grid combo 76: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:44:45,675 - INFO - Early stopping at epoch 177, val_loss did not improve for 15 epochs
+2025-06-19 20:44:54,433 - INFO - grid combo 77: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:44:54,815 - INFO - Early stopping at epoch 183, val_loss did not improve for 15 epochs
+2025-06-19 20:45:03,559 - INFO - grid combo 78: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:45:03,944 - INFO - Early stopping at epoch 201, val_loss did not improve for 15 epochs
+2025-06-19 20:45:12,730 - INFO - grid combo 79: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:45:13,173 - INFO - Early stopping at epoch 230, val_loss did not improve for 15 epochs
+2025-06-19 20:45:21,936 - INFO - grid combo 80: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:45:22,053 - INFO - Early stopping at epoch 58, val_loss did not improve for 15 epochs
+2025-06-19 20:45:30,906 - INFO - grid combo 81: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:45:31,038 - INFO - Early stopping at epoch 61, val_loss did not improve for 15 epochs
+2025-06-19 20:45:39,857 - INFO - grid combo 82: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:45:39,972 - INFO - Early stopping at epoch 55, val_loss did not improve for 15 epochs
+2025-06-19 20:45:48,771 - INFO - grid combo 83: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:45:48,896 - INFO - Early stopping at epoch 63, val_loss did not improve for 15 epochs
+2025-06-19 20:45:57,661 - INFO - grid combo 84: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:45:57,789 - INFO - Early stopping at epoch 64, val_loss did not improve for 15 epochs
+2025-06-19 20:46:04,291 - INFO - Early stopping at epoch 82, val_loss did not improve for 15 epochs
+2025-06-19 20:46:04,308 - INFO - grid combo 85: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:46:04,861 - INFO - Early stopping at epoch 284, val_loss did not improve for 15 epochs
+2025-06-19 20:46:13,706 - INFO - grid combo 86: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:46:23,125 - INFO - grid combo 87: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:46:32,564 - INFO - grid combo 88: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:46:41,915 - INFO - grid combo 89: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:46:51,246 - INFO - grid combo 90: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:46:51,578 - INFO - Early stopping at epoch 153, val_loss did not improve for 15 epochs
+2025-06-19 20:46:52,176 - INFO - Early stopping at epoch 145, val_loss did not improve for 15 epochs
+2025-06-19 20:46:53,529 - INFO - Early stopping at epoch 210, val_loss did not improve for 15 epochs
+2025-06-19 20:46:54,649 - INFO - Early stopping at epoch 131, val_loss did not improve for 15 epochs
+2025-06-19 20:46:57,331 - INFO - Early stopping at epoch 252, val_loss did not improve for 15 epochs
+2025-06-19 20:46:57,347 - INFO - grid combo 91: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:46:57,603 - INFO - Early stopping at epoch 131, val_loss did not improve for 15 epochs
+2025-06-19 20:46:58,213 - INFO - Early stopping at epoch 147, val_loss did not improve for 15 epochs
+2025-06-19 20:46:59,277 - INFO - Early stopping at epoch 164, val_loss did not improve for 15 epochs
+2025-06-19 20:47:01,039 - INFO - Early stopping at epoch 206, val_loss did not improve for 15 epochs
+2025-06-19 20:47:03,432 - INFO - Early stopping at epoch 227, val_loss did not improve for 15 epochs
+2025-06-19 20:47:03,448 - INFO - grid combo 92: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:47:03,793 - INFO - Early stopping at epoch 178, val_loss did not improve for 15 epochs
+2025-06-19 20:47:04,645 - INFO - Early stopping at epoch 210, val_loss did not improve for 15 epochs
+2025-06-19 20:47:06,157 - INFO - Early stopping at epoch 235, val_loss did not improve for 15 epochs
+2025-06-19 20:47:08,399 - INFO - Early stopping at epoch 265, val_loss did not improve for 15 epochs
+2025-06-19 20:47:11,546 - INFO - grid combo 93: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:47:20,890 - INFO - grid combo 94: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:47:21,421 - INFO - Early stopping at epoch 278, val_loss did not improve for 15 epochs
+2025-06-19 20:47:30,172 - INFO - grid combo 95: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:47:30,385 - INFO - Early stopping at epoch 109, val_loss did not improve for 15 epochs
+2025-06-19 20:47:30,822 - INFO - Early stopping at epoch 104, val_loss did not improve for 15 epochs
+2025-06-19 20:47:31,619 - INFO - Early stopping at epoch 123, val_loss did not improve for 15 epochs
+2025-06-19 20:47:32,487 - INFO - Early stopping at epoch 101, val_loss did not improve for 15 epochs
+2025-06-19 20:47:34,427 - INFO - Early stopping at epoch 185, val_loss did not improve for 15 epochs
+2025-06-19 20:47:34,443 - INFO - grid combo 96: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:47:34,677 - INFO - Early stopping at epoch 121, val_loss did not improve for 15 epochs
+2025-06-19 20:47:35,214 - INFO - Early stopping at epoch 131, val_loss did not improve for 15 epochs
+2025-06-19 20:47:36,309 - INFO - Early stopping at epoch 169, val_loss did not improve for 15 epochs
+2025-06-19 20:47:37,785 - INFO - Early stopping at epoch 172, val_loss did not improve for 15 epochs
+2025-06-19 20:47:40,137 - INFO - Early stopping at epoch 224, val_loss did not improve for 15 epochs
+2025-06-19 20:47:40,155 - INFO - grid combo 97: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:47:40,479 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 20:47:41,019 - INFO - Early stopping at epoch 131, val_loss did not improve for 15 epochs
+2025-06-19 20:47:42,172 - INFO - Early stopping at epoch 179, val_loss did not improve for 15 epochs
+2025-06-19 20:47:44,398 - INFO - Early stopping at epoch 262, val_loss did not improve for 15 epochs
+2025-06-19 20:47:46,660 - INFO - Early stopping at epoch 216, val_loss did not improve for 15 epochs
+2025-06-19 20:47:46,678 - INFO - grid combo 98: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:47:46,952 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 20:47:47,881 - INFO - Early stopping at epoch 228, val_loss did not improve for 15 epochs
+2025-06-19 20:47:55,428 - INFO - grid combo 99: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:47:55,965 - INFO - Early stopping at epoch 283, val_loss did not improve for 15 epochs
+2025-06-19 20:47:56,739 - INFO - Early stopping at epoch 192, val_loss did not improve for 15 epochs
+2025-06-19 20:47:57,875 - INFO - Early stopping at epoch 178, val_loss did not improve for 15 epochs
+2025-06-19 20:47:58,948 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 20:48:00,672 - INFO - Early stopping at epoch 164, val_loss did not improve for 15 epochs
+2025-06-19 20:48:00,694 - INFO - grid combo 100: {'hidden_size': 55, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:48:01,020 - INFO - Early stopping at epoch 273, val_loss did not improve for 15 epochs
+2025-06-19 20:48:05,686 - INFO - grid combo 101: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:48:05,997 - INFO - Early stopping at epoch 256, val_loss did not improve for 15 epochs
+2025-06-19 20:48:10,671 - INFO - grid combo 102: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:48:10,989 - INFO - Early stopping at epoch 248, val_loss did not improve for 15 epochs
+2025-06-19 20:48:15,633 - INFO - grid combo 103: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:48:20,670 - INFO - grid combo 104: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:48:25,650 - INFO - grid combo 105: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:48:25,733 - INFO - Early stopping at epoch 67, val_loss did not improve for 15 epochs
+2025-06-19 20:48:30,402 - INFO - grid combo 106: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:48:30,492 - INFO - Early stopping at epoch 71, val_loss did not improve for 15 epochs
+2025-06-19 20:48:35,173 - INFO - grid combo 107: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:48:35,273 - INFO - Early stopping at epoch 74, val_loss did not improve for 15 epochs
+2025-06-19 20:48:39,943 - INFO - grid combo 108: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:48:40,082 - INFO - Early stopping at epoch 72, val_loss did not improve for 15 epochs
+2025-06-19 20:48:44,756 - INFO - grid combo 109: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:48:44,859 - INFO - Early stopping at epoch 77, val_loss did not improve for 15 epochs
+2025-06-19 20:48:49,490 - INFO - grid combo 110: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:48:54,579 - INFO - grid combo 111: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:48:54,658 - INFO - Early stopping at epoch 50, val_loss did not improve for 15 epochs
+2025-06-19 20:48:59,319 - INFO - grid combo 112: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:49:04,342 - INFO - grid combo 113: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:49:04,408 - INFO - Early stopping at epoch 50, val_loss did not improve for 15 epochs
+2025-06-19 20:49:09,046 - INFO - grid combo 114: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:49:09,110 - INFO - Early stopping at epoch 48, val_loss did not improve for 15 epochs
+2025-06-19 20:49:13,749 - INFO - grid combo 115: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:49:13,970 - INFO - Early stopping at epoch 184, val_loss did not improve for 15 epochs
+2025-06-19 20:49:14,503 - INFO - Early stopping at epoch 233, val_loss did not improve for 15 epochs
+2025-06-19 20:49:15,278 - INFO - Early stopping at epoch 233, val_loss did not improve for 15 epochs
+2025-06-19 20:49:16,486 - INFO - Early stopping at epoch 275, val_loss did not improve for 15 epochs
+2025-06-19 20:49:18,177 - INFO - grid combo 116: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:49:18,411 - INFO - Early stopping at epoch 169, val_loss did not improve for 15 epochs
+2025-06-19 20:49:18,904 - INFO - Early stopping at epoch 212, val_loss did not improve for 15 epochs
+2025-06-19 20:49:19,848 - INFO - Early stopping at epoch 284, val_loss did not improve for 15 epochs
+2025-06-19 20:49:21,127 - INFO - Early stopping at epoch 291, val_loss did not improve for 15 epochs
+2025-06-19 20:49:22,779 - INFO - grid combo 117: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:49:23,049 - INFO - Early stopping at epoch 215, val_loss did not improve for 15 epochs
+2025-06-19 20:49:23,470 - INFO - Early stopping at epoch 182, val_loss did not improve for 15 epochs
+2025-06-19 20:49:27,459 - INFO - grid combo 118: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:49:32,464 - INFO - grid combo 119: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:49:35,628 - INFO - Early stopping at epoch 258, val_loss did not improve for 15 epochs
+2025-06-19 20:49:37,273 - INFO - grid combo 120: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:49:37,424 - INFO - Early stopping at epoch 110, val_loss did not improve for 15 epochs
+2025-06-19 20:49:37,685 - INFO - Early stopping at epoch 108, val_loss did not improve for 15 epochs
+2025-06-19 20:49:38,218 - INFO - Early stopping at epoch 156, val_loss did not improve for 15 epochs
+2025-06-19 20:49:38,984 - INFO - Early stopping at epoch 172, val_loss did not improve for 15 epochs
+2025-06-19 20:49:40,209 - INFO - Early stopping at epoch 220, val_loss did not improve for 15 epochs
+2025-06-19 20:49:40,223 - INFO - grid combo 121: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:49:40,398 - INFO - Early stopping at epoch 144, val_loss did not improve for 15 epochs
+2025-06-19 20:49:40,829 - INFO - Early stopping at epoch 183, val_loss did not improve for 15 epochs
+2025-06-19 20:49:41,385 - INFO - Early stopping at epoch 165, val_loss did not improve for 15 epochs
+2025-06-19 20:49:42,454 - INFO - Early stopping at epoch 241, val_loss did not improve for 15 epochs
+2025-06-19 20:49:43,827 - INFO - Early stopping at epoch 245, val_loss did not improve for 15 epochs
+2025-06-19 20:49:43,841 - INFO - grid combo 122: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:49:43,986 - INFO - Early stopping at epoch 118, val_loss did not improve for 15 epochs
+2025-06-19 20:49:44,297 - INFO - Early stopping at epoch 134, val_loss did not improve for 15 epochs
+2025-06-19 20:49:44,964 - INFO - Early stopping at epoch 198, val_loss did not improve for 15 epochs
+2025-06-19 20:49:45,834 - INFO - Early stopping at epoch 195, val_loss did not improve for 15 epochs
+2025-06-19 20:49:47,496 - INFO - grid combo 123: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:49:52,513 - INFO - grid combo 124: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:49:52,606 - INFO - Early stopping at epoch 73, val_loss did not improve for 15 epochs
+2025-06-19 20:49:53,059 - INFO - Early stopping at epoch 199, val_loss did not improve for 15 epochs
+2025-06-19 20:49:53,919 - INFO - Early stopping at epoch 256, val_loss did not improve for 15 epochs
+2025-06-19 20:49:56,397 - INFO - Early stopping at epoch 212, val_loss did not improve for 15 epochs
+2025-06-19 20:49:56,413 - INFO - grid combo 125: {'hidden_size': 60, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:49:56,752 - INFO - Early stopping at epoch 171, val_loss did not improve for 15 epochs
+2025-06-19 20:50:05,322 - INFO - grid combo 126: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:50:05,654 - INFO - Early stopping at epoch 173, val_loss did not improve for 15 epochs
+2025-06-19 20:50:14,202 - INFO - grid combo 127: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:50:14,545 - INFO - Early stopping at epoch 177, val_loss did not improve for 15 epochs
+2025-06-19 20:50:23,066 - INFO - grid combo 128: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:50:23,430 - INFO - Early stopping at epoch 196, val_loss did not improve for 15 epochs
+2025-06-19 20:50:31,996 - INFO - grid combo 129: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:50:41,082 - INFO - grid combo 130: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:50:41,190 - INFO - Early stopping at epoch 55, val_loss did not improve for 15 epochs
+2025-06-19 20:50:49,777 - INFO - grid combo 131: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:50:49,896 - INFO - Early stopping at epoch 59, val_loss did not improve for 15 epochs
+2025-06-19 20:50:58,468 - INFO - grid combo 132: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:50:58,586 - INFO - Early stopping at epoch 61, val_loss did not improve for 15 epochs
+2025-06-19 20:51:07,162 - INFO - grid combo 133: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:51:07,275 - INFO - Early stopping at epoch 58, val_loss did not improve for 15 epochs
+2025-06-19 20:51:15,799 - INFO - grid combo 134: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:51:15,926 - INFO - Early stopping at epoch 65, val_loss did not improve for 15 epochs
+2025-06-19 20:51:22,250 - INFO - Early stopping at epoch 81, val_loss did not improve for 15 epochs
+2025-06-19 20:51:22,268 - INFO - grid combo 135: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:51:22,818 - INFO - Early stopping at epoch 281, val_loss did not improve for 15 epochs
+2025-06-19 20:51:31,415 - INFO - grid combo 136: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:51:40,602 - INFO - grid combo 137: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:51:40,719 - INFO - Early stopping at epoch 58, val_loss did not improve for 15 epochs
+2025-06-19 20:51:49,297 - INFO - grid combo 138: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:51:58,419 - INFO - grid combo 139: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:52:07,507 - INFO - grid combo 140: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:52:07,734 - INFO - Early stopping at epoch 121, val_loss did not improve for 15 epochs
+2025-06-19 20:52:08,276 - INFO - Early stopping at epoch 136, val_loss did not improve for 15 epochs
+2025-06-19 20:52:09,709 - INFO - Early stopping at epoch 230, val_loss did not improve for 15 epochs
+2025-06-19 20:52:10,860 - INFO - Early stopping at epoch 138, val_loss did not improve for 15 epochs
+2025-06-19 20:52:13,290 - INFO - Early stopping at epoch 238, val_loss did not improve for 15 epochs
+2025-06-19 20:52:13,308 - INFO - grid combo 141: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:52:13,672 - INFO - Early stopping at epoch 193, val_loss did not improve for 15 epochs
+2025-06-19 20:52:14,437 - INFO - Early stopping at epoch 191, val_loss did not improve for 15 epochs
+2025-06-19 20:52:16,061 - INFO - Early stopping at epoch 260, val_loss did not improve for 15 epochs
+2025-06-19 20:52:18,059 - INFO - Early stopping at epoch 243, val_loss did not improve for 15 epochs
+2025-06-19 20:52:21,146 - INFO - grid combo 142: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:52:21,552 - INFO - Early stopping at epoch 215, val_loss did not improve for 15 epochs
+2025-06-19 20:52:22,263 - INFO - Early stopping at epoch 178, val_loss did not improve for 15 epochs
+2025-06-19 20:52:25,995 - INFO - Early stopping at epoch 226, val_loss did not improve for 15 epochs
+2025-06-19 20:52:28,874 - INFO - Early stopping at epoch 283, val_loss did not improve for 15 epochs
+2025-06-19 20:52:28,892 - INFO - grid combo 143: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:52:38,003 - INFO - grid combo 144: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:52:38,156 - INFO - Early stopping at epoch 74, val_loss did not improve for 15 epochs
+2025-06-19 20:52:42,881 - INFO - Early stopping at epoch 207, val_loss did not improve for 15 epochs
+2025-06-19 20:52:45,942 - INFO - grid combo 145: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:52:46,114 - INFO - Early stopping at epoch 90, val_loss did not improve for 15 epochs
+2025-06-19 20:52:46,527 - INFO - Early stopping at epoch 102, val_loss did not improve for 15 epochs
+2025-06-19 20:52:47,356 - INFO - Early stopping at epoch 131, val_loss did not improve for 15 epochs
+2025-06-19 20:52:48,639 - INFO - Early stopping at epoch 155, val_loss did not improve for 15 epochs
+2025-06-19 20:52:50,536 - INFO - Early stopping at epoch 184, val_loss did not improve for 15 epochs
+2025-06-19 20:52:50,553 - INFO - grid combo 146: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:52:50,798 - INFO - Early stopping at epoch 128, val_loss did not improve for 15 epochs
+2025-06-19 20:52:51,337 - INFO - Early stopping at epoch 134, val_loss did not improve for 15 epochs
+2025-06-19 20:52:52,366 - INFO - Early stopping at epoch 164, val_loss did not improve for 15 epochs
+2025-06-19 20:52:54,126 - INFO - Early stopping at epoch 213, val_loss did not improve for 15 epochs
+2025-06-19 20:52:55,528 - INFO - Early stopping at epoch 137, val_loss did not improve for 15 epochs
+2025-06-19 20:52:55,546 - INFO - grid combo 147: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:52:55,820 - INFO - Early stopping at epoch 144, val_loss did not improve for 15 epochs
+2025-06-19 20:52:56,249 - INFO - Early stopping at epoch 106, val_loss did not improve for 15 epochs
+2025-06-19 20:52:57,606 - INFO - Early stopping at epoch 218, val_loss did not improve for 15 epochs
+2025-06-19 20:52:59,132 - INFO - Early stopping at epoch 185, val_loss did not improve for 15 epochs
+2025-06-19 20:53:00,591 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 20:53:00,609 - INFO - grid combo 148: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:53:00,717 - INFO - Early stopping at epoch 56, val_loss did not improve for 15 epochs
+2025-06-19 20:53:01,793 - INFO - Early stopping at epoch 274, val_loss did not improve for 15 epochs
+2025-06-19 20:53:09,199 - INFO - grid combo 149: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:53:09,312 - INFO - Early stopping at epoch 56, val_loss did not improve for 15 epochs
+2025-06-19 20:53:09,852 - INFO - Early stopping at epoch 135, val_loss did not improve for 15 epochs
+2025-06-19 20:53:10,935 - INFO - Early stopping at epoch 175, val_loss did not improve for 15 epochs
+2025-06-19 20:53:12,163 - INFO - Early stopping at epoch 149, val_loss did not improve for 15 epochs
+2025-06-19 20:53:14,253 - INFO - Early stopping at epoch 206, val_loss did not improve for 15 epochs
+2025-06-19 20:53:14,270 - INFO - grid combo 150: {'hidden_size': 60, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:53:14,702 - INFO - Early stopping at epoch 282, val_loss did not improve for 15 epochs
+2025-06-19 20:53:21,605 - INFO - grid combo 151: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:53:28,972 - INFO - grid combo 152: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:53:36,359 - INFO - grid combo 153: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:53:36,800 - INFO - Early stopping at epoch 265, val_loss did not improve for 15 epochs
+2025-06-19 20:53:43,647 - INFO - grid combo 154: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:53:50,982 - INFO - grid combo 155: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:53:51,100 - INFO - Early stopping at epoch 69, val_loss did not improve for 15 epochs
+2025-06-19 20:53:58,072 - INFO - grid combo 156: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:53:58,206 - INFO - Early stopping at epoch 64, val_loss did not improve for 15 epochs
+2025-06-19 20:54:05,152 - INFO - grid combo 157: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:54:05,255 - INFO - Early stopping at epoch 64, val_loss did not improve for 15 epochs
+2025-06-19 20:54:12,177 - INFO - grid combo 158: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:54:12,293 - INFO - Early stopping at epoch 70, val_loss did not improve for 15 epochs
+2025-06-19 20:54:19,224 - INFO - grid combo 159: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:54:19,344 - INFO - Early stopping at epoch 77, val_loss did not improve for 15 epochs
+2025-06-19 20:54:26,251 - INFO - grid combo 160: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:54:26,322 - INFO - Early stopping at epoch 42, val_loss did not improve for 15 epochs
+2025-06-19 20:54:33,286 - INFO - grid combo 161: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:54:33,401 - INFO - Early stopping at epoch 70, val_loss did not improve for 15 epochs
+2025-06-19 20:54:40,384 - INFO - grid combo 162: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:54:40,460 - INFO - Early stopping at epoch 46, val_loss did not improve for 15 epochs
+2025-06-19 20:54:47,445 - INFO - grid combo 163: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:54:54,844 - INFO - grid combo 164: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:54:54,920 - INFO - Early stopping at epoch 46, val_loss did not improve for 15 epochs
+2025-06-19 20:55:01,815 - INFO - grid combo 165: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:55:02,028 - INFO - Early stopping at epoch 135, val_loss did not improve for 15 epochs
+2025-06-19 20:55:02,570 - INFO - Early stopping at epoch 165, val_loss did not improve for 15 epochs
+2025-06-19 20:55:03,649 - INFO - Early stopping at epoch 221, val_loss did not improve for 15 epochs
+2025-06-19 20:55:08,079 - INFO - Early stopping at epoch 285, val_loss did not improve for 15 epochs
+2025-06-19 20:55:08,096 - INFO - grid combo 166: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:55:08,409 - INFO - Early stopping at epoch 201, val_loss did not improve for 15 epochs
+2025-06-19 20:55:08,902 - INFO - Early stopping at epoch 150, val_loss did not improve for 15 epochs
+2025-06-19 20:55:10,324 - INFO - Early stopping at epoch 289, val_loss did not improve for 15 epochs
+2025-06-19 20:55:14,879 - INFO - grid combo 167: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:55:15,264 - INFO - Early stopping at epoch 247, val_loss did not improve for 15 epochs
+2025-06-19 20:55:15,864 - INFO - Early stopping at epoch 184, val_loss did not improve for 15 epochs
+2025-06-19 20:55:21,856 - INFO - grid combo 168: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 20:55:29,214 - INFO - grid combo 169: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 20:55:29,586 - INFO - Early stopping at epoch 244, val_loss did not improve for 15 epochs
+2025-06-19 20:55:33,707 - INFO - Early stopping at epoch 257, val_loss did not improve for 15 epochs
+2025-06-19 20:55:35,556 - INFO - Early stopping at epoch 224, val_loss did not improve for 15 epochs
+2025-06-19 20:55:35,571 - INFO - grid combo 170: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 20:55:35,780 - INFO - Early stopping at epoch 133, val_loss did not improve for 15 epochs
+2025-06-19 20:55:36,200 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 20:55:36,837 - INFO - Early stopping at epoch 127, val_loss did not improve for 15 epochs
+2025-06-19 20:55:38,070 - INFO - Early stopping at epoch 180, val_loss did not improve for 15 epochs
+2025-06-19 20:55:39,583 - INFO - Early stopping at epoch 181, val_loss did not improve for 15 epochs
+2025-06-19 20:55:39,601 - INFO - grid combo 171: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 20:55:39,820 - INFO - Early stopping at epoch 134, val_loss did not improve for 15 epochs
+2025-06-19 20:55:40,320 - INFO - Early stopping at epoch 152, val_loss did not improve for 15 epochs
+2025-06-19 20:55:41,208 - INFO - Early stopping at epoch 177, val_loss did not improve for 15 epochs
+2025-06-19 20:55:42,299 - INFO - Early stopping at epoch 160, val_loss did not improve for 15 epochs
+2025-06-19 20:55:44,827 - INFO - grid combo 172: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 20:55:45,033 - INFO - Early stopping at epoch 127, val_loss did not improve for 15 epochs
+2025-06-19 20:55:45,451 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 20:55:46,379 - INFO - Early stopping at epoch 191, val_loss did not improve for 15 epochs
+2025-06-19 20:55:47,884 - INFO - Early stopping at epoch 222, val_loss did not improve for 15 epochs
+2025-06-19 20:55:50,133 - INFO - Early stopping at epoch 270, val_loss did not improve for 15 epochs
+2025-06-19 20:55:50,150 - INFO - grid combo 173: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 20:55:50,610 - INFO - Early stopping at epoch 275, val_loss did not improve for 15 epochs
+2025-06-19 20:55:54,867 - INFO - Early stopping at epoch 278, val_loss did not improve for 15 epochs
+2025-06-19 20:55:57,355 - INFO - grid combo 174: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 20:55:57,475 - INFO - Early stopping at epoch 73, val_loss did not improve for 15 epochs
+2025-06-19 20:56:01,386 - INFO - Early stopping at epoch 219, val_loss did not improve for 15 epochs
+2025-06-19 20:56:02,995 - INFO - Early stopping at epoch 195, val_loss did not improve for 15 epochs
+2025-06-19 20:56:03,013 - INFO - grid combo 175: {'hidden_size': 65, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 20:56:03,460 - INFO - Early stopping at epoch 158, val_loss did not improve for 15 epochs
+2025-06-19 20:56:17,057 - INFO - grid combo 176: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:56:17,496 - INFO - Early stopping at epoch 154, val_loss did not improve for 15 epochs
+2025-06-19 20:56:31,125 - INFO - grid combo 177: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:56:31,582 - INFO - Early stopping at epoch 161, val_loss did not improve for 15 epochs
+2025-06-19 20:56:45,206 - INFO - grid combo 178: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 20:56:45,771 - INFO - Early stopping at epoch 205, val_loss did not improve for 15 epochs
+2025-06-19 20:56:59,363 - INFO - grid combo 179: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 20:56:59,949 - INFO - Early stopping at epoch 211, val_loss did not improve for 15 epochs
+2025-06-19 20:57:13,578 - INFO - grid combo 180: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 20:57:13,718 - INFO - Early stopping at epoch 49, val_loss did not improve for 15 epochs
+2025-06-19 20:57:27,392 - INFO - grid combo 181: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:57:27,536 - INFO - Early stopping at epoch 51, val_loss did not improve for 15 epochs
+2025-06-19 20:57:41,163 - INFO - grid combo 182: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:57:55,639 - INFO - grid combo 183: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 20:57:55,865 - INFO - Early stopping at epoch 56, val_loss did not improve for 15 epochs
+2025-06-19 20:58:09,469 - INFO - grid combo 184: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 20:58:09,637 - INFO - Early stopping at epoch 59, val_loss did not improve for 15 epochs
+2025-06-19 20:58:23,226 - INFO - grid combo 185: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 20:58:23,380 - INFO - Early stopping at epoch 53, val_loss did not improve for 15 epochs
+2025-06-19 20:58:37,143 - INFO - grid combo 186: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 20:58:51,704 - INFO - grid combo 187: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 20:59:06,208 - INFO - grid combo 188: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 20:59:20,598 - INFO - grid combo 189: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 20:59:35,053 - INFO - grid combo 190: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 20:59:35,432 - INFO - Early stopping at epoch 136, val_loss did not improve for 15 epochs
+2025-06-19 20:59:36,374 - INFO - Early stopping at epoch 146, val_loss did not improve for 15 epochs
+2025-06-19 20:59:38,304 - INFO - Early stopping at epoch 197, val_loss did not improve for 15 epochs
+2025-06-19 20:59:41,213 - INFO - Early stopping at epoch 222, val_loss did not improve for 15 epochs
+2025-06-19 20:59:44,060 - INFO - Early stopping at epoch 170, val_loss did not improve for 15 epochs
+2025-06-19 20:59:44,081 - INFO - grid combo 191: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 20:59:44,544 - INFO - Early stopping at epoch 162, val_loss did not improve for 15 epochs
+2025-06-19 20:59:45,611 - INFO - Early stopping at epoch 166, val_loss did not improve for 15 epochs
+2025-06-19 20:59:47,295 - INFO - Early stopping at epoch 174, val_loss did not improve for 15 epochs
+2025-06-19 20:59:49,839 - INFO - Early stopping at epoch 196, val_loss did not improve for 15 epochs
+2025-06-19 20:59:54,822 - INFO - grid combo 192: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 20:59:55,456 - INFO - Early stopping at epoch 227, val_loss did not improve for 15 epochs
+2025-06-19 20:59:56,566 - INFO - Early stopping at epoch 173, val_loss did not improve for 15 epochs
+2025-06-19 20:59:59,196 - INFO - Early stopping at epoch 274, val_loss did not improve for 15 epochs
+2025-06-19 21:00:01,768 - INFO - Early stopping at epoch 198, val_loss did not improve for 15 epochs
+2025-06-19 21:00:06,771 - INFO - grid combo 193: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 21:00:21,247 - INFO - grid combo 194: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 21:00:33,925 - INFO - Early stopping at epoch 197, val_loss did not improve for 15 epochs
+2025-06-19 21:00:33,945 - INFO - grid combo 195: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 21:00:34,208 - INFO - Early stopping at epoch 93, val_loss did not improve for 15 epochs
+2025-06-19 21:00:34,972 - INFO - Early stopping at epoch 118, val_loss did not improve for 15 epochs
+2025-06-19 21:00:36,102 - INFO - Early stopping at epoch 116, val_loss did not improve for 15 epochs
+2025-06-19 21:00:38,821 - INFO - Early stopping at epoch 208, val_loss did not improve for 15 epochs
+2025-06-19 21:00:41,493 - INFO - Early stopping at epoch 160, val_loss did not improve for 15 epochs
+2025-06-19 21:00:41,513 - INFO - grid combo 196: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 21:00:41,858 - INFO - Early stopping at epoch 124, val_loss did not improve for 15 epochs
+2025-06-19 21:00:42,596 - INFO - Early stopping at epoch 114, val_loss did not improve for 15 epochs
+2025-06-19 21:00:44,043 - INFO - Early stopping at epoch 149, val_loss did not improve for 15 epochs
+2025-06-19 21:00:46,588 - INFO - Early stopping at epoch 195, val_loss did not improve for 15 epochs
+2025-06-19 21:00:49,383 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:00:49,404 - INFO - grid combo 197: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 21:00:49,733 - INFO - Early stopping at epoch 117, val_loss did not improve for 15 epochs
+2025-06-19 21:00:50,864 - INFO - Early stopping at epoch 176, val_loss did not improve for 15 epochs
+2025-06-19 21:00:52,655 - INFO - Early stopping at epoch 186, val_loss did not improve for 15 epochs
+2025-06-19 21:00:54,833 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:00:58,642 - INFO - Early stopping at epoch 229, val_loss did not improve for 15 epochs
+2025-06-19 21:00:58,662 - INFO - grid combo 198: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 21:00:59,425 - INFO - Early stopping at epoch 276, val_loss did not improve for 15 epochs
+2025-06-19 21:01:13,026 - INFO - grid combo 199: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 21:01:13,193 - INFO - Early stopping at epoch 55, val_loss did not improve for 15 epochs
+2025-06-19 21:01:14,056 - INFO - Early stopping at epoch 135, val_loss did not improve for 15 epochs
+2025-06-19 21:01:15,661 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:01:17,678 - INFO - Early stopping at epoch 156, val_loss did not improve for 15 epochs
+2025-06-19 21:01:20,441 - INFO - Early stopping at epoch 166, val_loss did not improve for 15 epochs
+2025-06-19 21:01:20,461 - INFO - grid combo 200: {'hidden_size': 65, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 21:01:28,070 - INFO - grid combo 201: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 21:01:35,643 - INFO - grid combo 202: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 21:01:36,025 - INFO - Early stopping at epoch 233, val_loss did not improve for 15 epochs
+2025-06-19 21:01:43,140 - INFO - grid combo 203: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 21:01:50,711 - INFO - grid combo 204: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 21:01:58,283 - INFO - grid combo 205: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 21:01:58,385 - INFO - Early stopping at epoch 63, val_loss did not improve for 15 epochs
+2025-06-19 21:02:05,582 - INFO - grid combo 206: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 21:02:05,689 - INFO - Early stopping at epoch 64, val_loss did not improve for 15 epochs
+2025-06-19 21:02:12,875 - INFO - grid combo 207: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 21:02:12,985 - INFO - Early stopping at epoch 68, val_loss did not improve for 15 epochs
+2025-06-19 21:02:20,179 - INFO - grid combo 208: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 21:02:20,301 - INFO - Early stopping at epoch 69, val_loss did not improve for 15 epochs
+2025-06-19 21:02:27,440 - INFO - grid combo 209: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 21:02:27,564 - INFO - Early stopping at epoch 75, val_loss did not improve for 15 epochs
+2025-06-19 21:02:34,683 - INFO - grid combo 210: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 21:02:42,425 - INFO - grid combo 211: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 21:02:42,537 - INFO - Early stopping at epoch 66, val_loss did not improve for 15 epochs
+2025-06-19 21:02:49,736 - INFO - grid combo 212: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 21:02:57,433 - INFO - grid combo 213: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 21:03:05,048 - INFO - grid combo 214: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 21:03:12,619 - INFO - grid combo 215: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 21:03:12,900 - INFO - Early stopping at epoch 169, val_loss did not improve for 15 epochs
+2025-06-19 21:03:13,433 - INFO - Early stopping at epoch 157, val_loss did not improve for 15 epochs
+2025-06-19 21:03:16,453 - INFO - Early stopping at epoch 215, val_loss did not improve for 15 epochs
+2025-06-19 21:03:19,082 - INFO - grid combo 216: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 21:03:19,414 - INFO - Early stopping at epoch 209, val_loss did not improve for 15 epochs
+2025-06-19 21:03:20,205 - INFO - Early stopping at epoch 235, val_loss did not improve for 15 epochs
+2025-06-19 21:03:21,144 - INFO - Early stopping at epoch 183, val_loss did not improve for 15 epochs
+2025-06-19 21:03:25,861 - INFO - grid combo 217: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 21:03:26,128 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:03:26,958 - INFO - Early stopping at epoch 246, val_loss did not improve for 15 epochs
+2025-06-19 21:03:28,467 - INFO - Early stopping at epoch 297, val_loss did not improve for 15 epochs
+2025-06-19 21:03:33,188 - INFO - grid combo 218: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 21:03:40,842 - INFO - grid combo 219: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 21:03:42,251 - INFO - Early stopping at epoch 280, val_loss did not improve for 15 epochs
+2025-06-19 21:03:45,248 - INFO - Early stopping at epoch 217, val_loss did not improve for 15 epochs
+2025-06-19 21:03:47,252 - INFO - Early stopping at epoch 236, val_loss did not improve for 15 epochs
+2025-06-19 21:03:47,270 - INFO - grid combo 220: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 21:03:47,456 - INFO - Early stopping at epoch 114, val_loss did not improve for 15 epochs
+2025-06-19 21:03:48,042 - INFO - Early stopping at epoch 172, val_loss did not improve for 15 epochs
+2025-06-19 21:03:48,850 - INFO - Early stopping at epoch 157, val_loss did not improve for 15 epochs
+2025-06-19 21:03:50,113 - INFO - Early stopping at epoch 179, val_loss did not improve for 15 epochs
+2025-06-19 21:03:51,562 - INFO - Early stopping at epoch 166, val_loss did not improve for 15 epochs
+2025-06-19 21:03:51,580 - INFO - grid combo 221: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 21:03:51,761 - INFO - Early stopping at epoch 110, val_loss did not improve for 15 epochs
+2025-06-19 21:03:52,161 - INFO - Early stopping at epoch 117, val_loss did not improve for 15 epochs
+2025-06-19 21:03:52,843 - INFO - Early stopping at epoch 132, val_loss did not improve for 15 epochs
+2025-06-19 21:03:54,553 - INFO - Early stopping at epoch 243, val_loss did not improve for 15 epochs
+2025-06-19 21:03:56,838 - INFO - Early stopping at epoch 265, val_loss did not improve for 15 epochs
+2025-06-19 21:03:56,855 - INFO - grid combo 222: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 21:03:57,127 - INFO - Early stopping at epoch 168, val_loss did not improve for 15 epochs
+2025-06-19 21:03:57,623 - INFO - Early stopping at epoch 144, val_loss did not improve for 15 epochs
+2025-06-19 21:03:58,533 - INFO - Early stopping at epoch 178, val_loss did not improve for 15 epochs
+2025-06-19 21:04:00,285 - INFO - Early stopping at epoch 250, val_loss did not improve for 15 epochs
+2025-06-19 21:04:02,881 - INFO - grid combo 223: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 21:04:03,215 - INFO - Early stopping at epoch 202, val_loss did not improve for 15 epochs
+2025-06-19 21:04:10,375 - INFO - grid combo 224: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 21:04:10,491 - INFO - Early stopping at epoch 70, val_loss did not improve for 15 epochs
+2025-06-19 21:04:11,291 - INFO - Early stopping at epoch 240, val_loss did not improve for 15 epochs
+2025-06-19 21:04:12,517 - INFO - Early stopping at epoch 246, val_loss did not improve for 15 epochs
+2025-06-19 21:04:13,135 - INFO - Early stopping at epoch 87, val_loss did not improve for 15 epochs
+2025-06-19 21:04:15,403 - INFO - Early stopping at epoch 267, val_loss did not improve for 15 epochs
+2025-06-19 21:04:15,420 - INFO - grid combo 225: {'hidden_size': 70, 'num_layers': 1, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 21:04:15,873 - INFO - Early stopping at epoch 159, val_loss did not improve for 15 epochs
+2025-06-19 21:04:29,980 - INFO - grid combo 226: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0001} - completed
+2025-06-19 21:04:30,441 - INFO - Early stopping at epoch 159, val_loss did not improve for 15 epochs
+2025-06-19 21:04:44,532 - INFO - grid combo 227: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.0005} - completed
+2025-06-19 21:04:45,021 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:04:59,124 - INFO - grid combo 228: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.001} - completed
+2025-06-19 21:04:59,690 - INFO - Early stopping at epoch 193, val_loss did not improve for 15 epochs
+2025-06-19 21:05:13,761 - INFO - grid combo 229: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.005} - completed
+2025-06-19 21:05:14,359 - INFO - Early stopping at epoch 209, val_loss did not improve for 15 epochs
+2025-06-19 21:05:28,453 - INFO - grid combo 230: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0001, 'weight_decay': 0.01} - completed
+2025-06-19 21:05:28,652 - INFO - Early stopping at epoch 68, val_loss did not improve for 15 epochs
+2025-06-19 21:05:42,854 - INFO - grid combo 231: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0001} - completed
+2025-06-19 21:05:43,022 - INFO - Early stopping at epoch 54, val_loss did not improve for 15 epochs
+2025-06-19 21:05:57,243 - INFO - grid combo 232: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.0005} - completed
+2025-06-19 21:05:57,403 - INFO - Early stopping at epoch 54, val_loss did not improve for 15 epochs
+2025-06-19 21:06:11,562 - INFO - grid combo 233: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.001} - completed
+2025-06-19 21:06:11,726 - INFO - Early stopping at epoch 55, val_loss did not improve for 15 epochs
+2025-06-19 21:06:25,844 - INFO - grid combo 234: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.005} - completed
+2025-06-19 21:06:26,020 - INFO - Early stopping at epoch 60, val_loss did not improve for 15 epochs
+2025-06-19 21:06:40,116 - INFO - grid combo 235: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.0005, 'weight_decay': 0.01} - completed
+2025-06-19 21:06:40,910 - INFO - Early stopping at epoch 277, val_loss did not improve for 15 epochs
+2025-06-19 21:06:55,134 - INFO - grid combo 236: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0001} - completed
+2025-06-19 21:07:10,238 - INFO - grid combo 237: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.0005} - completed
+2025-06-19 21:07:10,391 - INFO - Early stopping at epoch 51, val_loss did not improve for 15 epochs
+2025-06-19 21:07:24,581 - INFO - grid combo 238: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.001} - completed
+2025-06-19 21:07:39,479 - INFO - grid combo 239: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.005} - completed
+2025-06-19 21:07:54,360 - INFO - grid combo 240: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.001, 'weight_decay': 0.01} - completed
+2025-06-19 21:07:54,772 - INFO - Early stopping at epoch 143, val_loss did not improve for 15 epochs
+2025-06-19 21:07:55,655 - INFO - Early stopping at epoch 132, val_loss did not improve for 15 epochs
+2025-06-19 21:07:57,041 - INFO - Early stopping at epoch 138, val_loss did not improve for 15 epochs
+2025-06-19 21:07:59,657 - INFO - Early stopping at epoch 194, val_loss did not improve for 15 epochs
+2025-06-19 21:08:04,013 - INFO - Early stopping at epoch 251, val_loss did not improve for 15 epochs
+2025-06-19 21:08:04,034 - INFO - grid combo 241: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0001} - completed
+2025-06-19 21:08:04,513 - INFO - Early stopping at epoch 167, val_loss did not improve for 15 epochs
+2025-06-19 21:08:05,445 - INFO - Early stopping at epoch 141, val_loss did not improve for 15 epochs
+2025-06-19 21:08:07,242 - INFO - Early stopping at epoch 179, val_loss did not improve for 15 epochs
+2025-06-19 21:08:10,359 - INFO - Early stopping at epoch 229, val_loss did not improve for 15 epochs
+2025-06-19 21:08:15,339 - INFO - Early stopping at epoch 289, val_loss did not improve for 15 epochs
+2025-06-19 21:08:15,359 - INFO - grid combo 242: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.0005} - completed
+2025-06-19 21:08:15,971 - INFO - Early stopping at epoch 213, val_loss did not improve for 15 epochs
+2025-06-19 21:08:17,198 - INFO - Early stopping at epoch 185, val_loss did not improve for 15 epochs
+2025-06-19 21:08:19,927 - INFO - Early stopping at epoch 273, val_loss did not improve for 15 epochs
+2025-06-19 21:08:23,443 - INFO - Early stopping at epoch 260, val_loss did not improve for 15 epochs
+2025-06-19 21:08:28,644 - INFO - grid combo 243: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.001} - completed
+2025-06-19 21:08:43,549 - INFO - grid combo 244: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.005} - completed
+2025-06-19 21:08:44,100 - INFO - Early stopping at epoch 193, val_loss did not improve for 15 epochs
+2025-06-19 21:08:51,780 - INFO - Early stopping at epoch 206, val_loss did not improve for 15 epochs
+2025-06-19 21:08:56,912 - INFO - grid combo 245: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.005, 'weight_decay': 0.01} - completed
+2025-06-19 21:08:57,238 - INFO - Early stopping at epoch 111, val_loss did not improve for 15 epochs
+2025-06-19 21:08:58,130 - INFO - Early stopping at epoch 134, val_loss did not improve for 15 epochs
+2025-06-19 21:08:59,552 - INFO - Early stopping at epoch 142, val_loss did not improve for 15 epochs
+2025-06-19 21:09:01,084 - INFO - Early stopping at epoch 113, val_loss did not improve for 15 epochs
+2025-06-19 21:09:04,229 - INFO - Early stopping at epoch 182, val_loss did not improve for 15 epochs
+2025-06-19 21:09:04,249 - INFO - grid combo 246: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0001} - completed
+2025-06-19 21:09:04,618 - INFO - Early stopping at epoch 126, val_loss did not improve for 15 epochs
+2025-06-19 21:09:05,338 - INFO - Early stopping at epoch 107, val_loss did not improve for 15 epochs
+2025-06-19 21:09:06,690 - INFO - Early stopping at epoch 134, val_loss did not improve for 15 epochs
+2025-06-19 21:09:08,470 - INFO - Early stopping at epoch 130, val_loss did not improve for 15 epochs
+2025-06-19 21:09:11,705 - INFO - Early stopping at epoch 187, val_loss did not improve for 15 epochs
+2025-06-19 21:09:11,726 - INFO - grid combo 247: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.0005} - completed
+2025-06-19 21:09:12,160 - INFO - Early stopping at epoch 149, val_loss did not improve for 15 epochs
+2025-06-19 21:09:13,263 - INFO - Early stopping at epoch 166, val_loss did not improve for 15 epochs
+2025-06-19 21:09:15,314 - INFO - Early stopping at epoch 205, val_loss did not improve for 15 epochs
+2025-06-19 21:09:18,576 - INFO - Early stopping at epoch 244, val_loss did not improve for 15 epochs
+2025-06-19 21:09:23,022 - INFO - Early stopping at epoch 259, val_loss did not improve for 15 epochs
+2025-06-19 21:09:23,043 - INFO - grid combo 248: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.001} - completed
+2025-06-19 21:09:23,207 - INFO - Early stopping at epoch 56, val_loss did not improve for 15 epochs
+2025-06-19 21:09:28,069 - INFO - Early stopping at epoch 292, val_loss did not improve for 15 epochs
+2025-06-19 21:09:36,536 - INFO - Early stopping at epoch 261, val_loss did not improve for 15 epochs
+2025-06-19 21:09:36,557 - INFO - grid combo 249: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.005} - completed
+2025-06-19 21:09:36,728 - INFO - Early stopping at epoch 56, val_loss did not improve for 15 epochs
+2025-06-19 21:09:37,972 - INFO - Early stopping at epoch 188, val_loss did not improve for 15 epochs
+2025-06-19 21:09:39,902 - INFO - Early stopping at epoch 195, val_loss did not improve for 15 epochs
+2025-06-19 21:09:41,957 - INFO - Early stopping at epoch 154, val_loss did not improve for 15 epochs
+2025-06-19 21:09:44,699 - INFO - Early stopping at epoch 160, val_loss did not improve for 15 epochs
+2025-06-19 21:09:44,720 - INFO - grid combo 250: {'hidden_size': 70, 'num_layers': 2, 'learning_rate': 0.01, 'weight_decay': 0.01} - completed
+2025-06-19 21:09:44,785 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,787 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,799 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,801 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,809 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,810 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,822 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-19 21:09:44,823 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-06-20 09:51:39,721 - INFO - Grid search and cross-validation completed.
+2025-06-20 09:51:39,904 - INFO - Generating loss curve plots for rank 1...
+2025-06-20 09:51:44,006 - INFO - Using hyperparameters (rank 1): {'hidden_size': 60.0, 'learning_rate': 0.001, 'num_layers': 2.0, 'weight_decay': 0.0005}
+2025-06-20 09:52:09,697 - INFO - Loss curve plots generated.
+2025-06-20 09:52:09,733 - INFO - Starting model training and evaluation...
+2025-06-20 09:52:09,733 - INFO - Using parameters from CV rank: 1
+2025-06-20 09:52:12,498 - INFO - Training model with parameters: {'hidden_size': 60.0, 'learning_rate': 0.001, 'num_layers': 2.0, 'weight_decay': 0.0005}
+2025-06-20 09:52:22,476 - INFO - Evaluating model with parameters: {'hidden_size': 60.0, 'learning_rate': 0.001, 'num_layers': 2.0, 'weight_decay': 0.0005}
+2025-06-20 09:52:23,317 - INFO - Model training and testing completed.
+2025-06-20 09:52:23,317 - INFO - Starting prediction on unseen data...
+2025-06-20 09:52:23,317 - INFO - Using parameters from CV rank: 1
+2025-06-20 09:52:23,481 - INFO - Prediction completed and saved.
+2025-06-20 09:52:23,481 - INFO - Pipeline execution completed.
