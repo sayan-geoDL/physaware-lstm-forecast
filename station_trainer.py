@@ -104,7 +104,7 @@ def trainer(x,y,params,epochs=400,device='cpu'):
         full_path=os.path.join('./plots',filename)
         counter+=1
     fig.savefig(full_path)
-    plt.show()
+    plt.show(block=False)
     torch.save(model.state_dict(), "./out/final_model.pth")
 ############### testing #######################################################
 def tester(x_tr,y_tr,t_tr,
