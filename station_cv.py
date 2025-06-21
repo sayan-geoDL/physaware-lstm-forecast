@@ -232,7 +232,7 @@ def performance_box_plots(in_file='./out/train_test/cv_result.csv'):
         full_path=os.path.join('./plots', filename)
         counter+=1
     fig.savefig(full_path)
-    plt.show()
+    plt.show(block=False)
 
 ###################### plotter for cross validation ###########################
 def cv_plot(x,y,cv_result='./out/train_test/cv_result.csv',initial_train_size=None,
@@ -345,7 +345,7 @@ def cv_plot(x,y,cv_result='./out/train_test/cv_result.csv',initial_train_size=No
         axs.set_xlabel('epochs')
         axs.set_title('fold= '+str(i+1))
         axs.legend(loc='best',prop={'size':15})
-        plt.show()
+        plt.show(block=False)
         fig.tight_layout()
         fig_name=f"rank{rank}_fold_{i+1}"
         ext='png'

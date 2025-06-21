@@ -93,6 +93,7 @@ def trainer(x,y,params,epochs=400,device='cpu'):
     axs.tick_params(axis='x',rotation=45)
     axs.legend(loc='best',prop={'size':20})
     fig.tight_layout()
+    plt.show(block=False)
     fig_name="Train_loss_curve"
     ext='png'
     filename=f"{fig_name}.{ext}"
@@ -208,6 +209,7 @@ def tester(x_tr,y_tr,t_tr,
         ax.tick_params(axis='x',which='both',rotation=45)
         ax.legend(loc='best',prop={'size':20})
     fig_dist.tight_layout()
+    plt.show(block=False)
     fig_dist.savefig('./plots/train_test_distribution.png')
     df_all=pd.concat([df_tr,df_tst],ignore_index=True)
     df_all=df_all.sort_values(by='time')
@@ -223,6 +225,7 @@ def tester(x_tr,y_tr,t_tr,
     axs_ts.tick_params(axis='x',which='both',rotation=45)
     axs_ts.legend(loc='best',prop={'size':20})
     fig_ts.tight_layout()
+    plt.show(block=False)
     fig_ts.savefig('./plots/train_test_all_ts.png')
     fig_ts_indi,axs_ts_indi=plt.subplots(1,2,figsize=(12*phi,12),dpi=150)
     for ax, df,title in zip(axs_ts_indi,[df_tr,df_tst],['Training','Testing']):
@@ -240,6 +243,7 @@ def tester(x_tr,y_tr,t_tr,
         ax.legend(loc='best',prop={'size':20})
     fig_ts_indi.tight_layout()
     fig_ts_indi.savefig('./plots/train_test_ts.png')
+    plt.show(block=False)
     summary_df = pd.DataFrame({
     'mean training': [round(df_tr['observed'].mean(),2), round(df_tr['predicted'].mean(),2)],
     'std training': [round(df_tr['observed'].std(),2), round(df_tr['predicted'].std(),2)],
