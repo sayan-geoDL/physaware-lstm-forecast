@@ -85,6 +85,7 @@ This is an LSTM Model, which will take in `n_step` number of look back days to p
 </p>
 
 <p align="center"><em>Figure: Schematic representation of the pipeline.</em></p>
+
 1. **Data Preprocessing (`process`)**
    - Downloads hourly data for training/testing/prediction periods.
    - Resamples to hourly, fills missing data (`interpolate`, `climatology`, or `smart`).
