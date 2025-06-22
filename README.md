@@ -79,6 +79,11 @@ The core forecasting engine is an LSTM neural network implemented in PyTorch, se
 | `all`           | Runs all stages sequentially                  |
 ## The Model
 This is an LSTM Model, which will take in `n_step` number of look back days to predict the average temperature of the next day in that station. It is advised to the user to consider the geographical location of the station , what kind of weather patterns exist, and then decide on the appropriate `n_step`. Once trained, the model can accept input sequences of varying lengths, but it is best to stick to the `n_step` it is trained for.
+<p align="center">
+  <img src="model_structure.png" alt="Model structure" width="700"/>
+</p>
+
+<p align="center"><em>Figure: Schematic representation of the model structure.</em></p>
 ## Pipeline Stages
 <p align="center">
   <img src="pipeline_flowchart.png" alt="Pipeline Flowchart" width="700"/>
