@@ -80,18 +80,18 @@ The core forecasting engine is an LSTM neural network implemented in PyTorch, se
 ## The Model
 This is an LSTM Model, which will take in `n_step` number of look back days to predict the average temperature of the next day in that station. It is advised to the user to consider the geographical location of the station , what kind of weather patterns exist, and then decide on the appropriate `n_step`. Once trained, the model can accept input sequences of varying lengths, but it is best to stick to the `n_step` it is trained for.
 <p align="center">
-  <img src="model_structure.png" alt="Model structure" width="700"/>
+  <img src="model_structure.png" alt="Model structure" height="700"/>
 </p>
 
-<p align="center"><em>Figure: Schematic representation of the model structure.</em></p>
+<p align="center"><em>Figure 1: Schematic representation of the model structure.</em></p>
 
 ## Pipeline Stages
 
 <p align="center">
-  <img src="pipeline_flowchart.png" alt="Pipeline Flowchart" width="700"/>
+  <img src="pipeline_flowchart.png" alt="Pipeline Flowchart" height="700"/>
 </p>
 
-<p align="center"><em>Figure: Schematic representation of the pipeline.</em></p>
+<p align="center"><em>Figure 2: Schematic representation of the pipeline.</em></p>
 
 
 1. **Data Preprocessing (`process`)**
@@ -234,19 +234,19 @@ The following is a sample result using `n_step=8 days` and a 5 fold walk-forward
   <img src="performance_boxplots.png" alt="Box plots" width="600"/>
 </p>
 
-<p align="center"><em>Figure 1: Box plots for the various parameters fed to the grid search.</em></p>
+<p align="center"><em>Figure 3: Box plots for the various parameters fed to the grid search.</em></p>
 
 <p align="center">
   <img src="train_test_distribution.png" alt="Distributions" width="600"/>
 </p>
 
-<p align="center"><em>Figure 2: Histogram comparison of predicted vs. observed temperatures for both training and testing phases.</em></p>
+<p align="center"><em>Figure 4: Histogram comparison of predicted vs. observed temperatures for both training and testing phases.</em></p>
 
 <p align="center">
   <img src="train_test_ts.png" alt="Individual time series" width="600"/>
 </p>
 
-<p align="center"><em>Figure 3: Time series of observed vs. predicted temperature for the training and testing periods .</em></p>
+<p align="center"><em>Figure 5: Time series of observed vs. predicted temperature for the training and testing periods .</em></p>
 
 ## Data Sources
 
