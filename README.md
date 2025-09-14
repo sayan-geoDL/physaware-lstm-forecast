@@ -1,259 +1,650 @@
-# LSTM model for station level Temperature prediction
+# Physics-Aware ML Pipeline for Station-Level Forecasting
 
-This repository presents a modular, production-ready pipeline built on Long Short-Term Memory (LSTM) networks for station-level temperature forecasting. The system automates data retrieval, preprocessing, hyperparameter tuning via cross-validation, model training, evaluation, and prediction in a streamlined workflow. Each stage uses separate scripts modularized and orchestrated via `main.py`.
+This repository presents a **modular, production-ready pipeline** for station-level forecasting using a **custom predictor model with physics-aware loss integration**. The system automates data retrieval, preprocessing (with smart data gap handling), scaling, hyperparameter tuning via cross-validation, model training, ensemble mode support, evaluation, and prediction.
 
+The framework is designed for **insurance and reinsurance applications**, where predictive accuracy, transparency, and physical plausibility are critical for risk modeling, claims forecasting, and exposure management.
 
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Skills Demonstrated](#skill_demo)
+- [💡 Skills Demonstrated](#skills-demonstrated)
 - [Installation](#installation)
 - [Usage](#usage)
-- [The Model](#model)
+- [Project structure](#project-structure)
+- [The Model](#the-model)
 - [Pipeline Stages](#pipeline-stages)
 - [Configuration](#configuration)
-- [Input Requirements](#input-data-requirements)
-- [Outputs](#outputs)
+- [Input Requirements](#input-requirements)
+- [Outputs & File Savings](#outputs--file-savings)
 - [Logging and Error Handling](#logging-and-error-handling)
 - [Sample Results](#sample-results)
 - [Data Sources](#data-sources)
+- [Notes on Implementation](#notes-on-implementation)
+- [References](#references)
+
 ---
 
 ## Overview
 
-The pipeline leverages the [Meteostat API](https://dev.meteostat.net/) to retrieve hourly meteorological data for a specified station. It supports:
+The pipeline is built for **robust and explainable predictive modeling**, supporting:
 
-- Multiple strategies for handling missing data, including climatology-based, interpolation-based, or a hybrid approach that adapts based on the length of missing data gaps.
-- Smart normalization and wind speed decomposition (`u/v`).
-- Expanding-Window cross-validation with hyperparameter grid search.
-- Plotting of Loss curves for selective hyperparameter combos depending on a specialised ranking scheme.
-- Training, testing, and inference.
+- **Smart data gap handling** using adaptive methods (interpolation or climatology depending on gap size).
+- **Hybrid scaling scheme**:
+  - Standardization (z-score) for most predictors.
+  - Specialized wind magnitude normalization to ensure physically meaningful feature scaling.
+- **Physics-aware custom loss function**, enforcing physical consistency in forecasts.
+- Expanding-window cross-validation with hyperparameter optimization.
+- Transparent performance reporting and visualization.
+- **Ensemble mode** for model ensembles, with optional EMOS post-processing placeholders.
+- Extensibility for **EMOS (Ensemble Model Output Statistics)** post-processing via placeholders.
 
+Each step is modularized and orchestrated via `main.py`.
 
-Each step is orchestrated through a single CLI interface via `main.py`.
+---
+
 ## 💡 Skills Demonstrated
 
-- Time Series Forecasting using LSTM Networks
-- Walk-Forward Expanding Window Cross-Validation
-- Smart Handling of Missing Meteorological Data
-- Hyperparameter Optimization via Grid Search
-- Scalable ML Pipeline Design (YAML-based configs)
-- CLI-Driven Modular Codebase for Reusability
-- Model Evaluation using RMSE, R² and Visualization
-
-### What is an LSTM?
-
-The core forecasting engine is an LSTM neural network implemented in PyTorch, selected for its proven ability to capture long-range temporal dependencies in weather patterns. Unlike traditional neural networks, LSTMs are well-suited for time series forecasting tasks because they can retain information over long sequences and handle temporal dependencies. This makes them ideal for predicting variables like temperature, where current values depend heavily on previous trends.
+- Time Series Forecasting with Custom Neural Predictors (LSTM-based sequence model)  
+- Model Architecture Design & Visualization (LSTM encoder → dense regression head → multi-output forecasting)  
+- Walk-Forward Expanding Window Cross-Validation  
+- Smart Handling of Missing Meteorological Data (interpolation, climatology, adaptive)  
+- Physics-Aware Loss Function Design  
+  - Integration of domain equations (Buck’s formula for RH) into loss  
+  - Hybrid objective combining **MSE** + **physics-consistency penalty**  
+- Hybrid Scaling with Domain-Specific Treatment of Wind Magnitudes  
+- Hyperparameter Optimization with Automated Reporting (TPE-based tuning, Pareto ranking)  
+- Ensemble Modeling & Post-processing (single vs ensemble, bootstrap uncertainty quantification, EMOS-ready)  
+- Scalable ML Pipeline Design (CLI-driven modular codebase with serial or staged execution)  
+- Model Evaluation using RMSE, R², and domain-specific physical consistency checks  
+- Business-Relevant Applications in Insurance & Reinsurance (risk forecasting, catastrophe modeling, exposure prediction)  
+---
 
 ## Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/sayan-geoDL/lstm-weather-pipeline.git
-   cd station-temp-lstm-pipeline
-   ```
-2. **(Optional) Create a virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/macOS
-   venv\Scripts\activate     # Windows
+   git clone https://github.com/sayan-geoDL/physaware-lstm-forecast
+   cd station-physics-aware-pipeline
    ```
 3. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 ## Usage
- ```bash
- python main.py --config config.yaml --stage [process|grid_search_cv|cv_plot|train|predict|all]
- ```
-### Stages
-| Stage           | Description                                   |
-|-----------------|-----------------------------------------------|
-| `process`       | Download, preprocess, and scale the data      |
-| `grid_search_cv`| Run cross-validation with hyperparameter tuning |
-| `cv_plot`       | Plot training loss for selected CV rank       |
-| `train`         | Train final model and evaluate on test set    |
-| `predict`       | Predict for future unseen dates               |
-| `all`           | Runs all stages sequentially                  |
-## The Model
-This is an LSTM Model, which will take in `n_step` number of look back days to predict the average temperature of the next day in that station. It is advised to the user to consider the geographical location of the station , what kind of weather patterns exist, and then decide on the appropriate `n_step`. Once trained, the model can accept input sequences of varying lengths, but it is best to stick to the `n_step` it is trained for.
-<p align="center">
-  <img src="model_structure.png" alt="Model structure" height="700"/>
-</p>
+  ```bash
+  python main.py --config config.yaml --stage [process|optimize_cv|train|predict|all]
+  ```
+## Project Structure
 
-<p align="center"><em>Figure 1: Schematic representation of the model structure.</em></p>
-
-## Pipeline Stages
-
-<p align="center">
-  <img src="pipeline_flowchart.png" alt="Pipeline Flowchart" height="700"/>
-</p>
-
-<p align="center"><em>Figure 2: Schematic representation of the pipeline.</em></p>
-
-
-1. **Data Preprocessing (`process`)**
-   - Downloads hourly data for training/testing/prediction periods.
-   - Resamples to hourly, fills missing data (`interpolate`, `climatology`, or `smart`).
-   - When `smart` is used in the `filling_parameters` section `type` subsection of the config file, user needs to provide the `gap_threshold` parameter where it will fill with climatology when gaps in the missing data is more than the `gap_threshold` and will fill with interpolation if gap is less than `gap_threshold`
-   - Computes `u`, `v` wind components from `wspd` (wind speed) and `wdir` (wind direction) columns.
-   - Converts hourly to daily resolution.
-   - Saves climatology from training data for filling of predicted or testing data.
-
-2. **Data Scaling (part of `process` stage)** 
-   - Normalizes wind magnitude up to a specified percentile (given by user). This is done to preserve and enhance the model to derive sense from wind speed and direction and its consequences on
-     temperature. 
-   - Applies z-score scaling on other variables.
-   - Stores scaling parameters (in `scaling_params.csv`) from the training data.
-   - Reuses these parameters for scaling test/prediction data and for inverse-transforming temperature outputs to real-world scale.
-
-3. **Cross-Validation and Grid Search (`grid_search_cv`)**
-   - Performs walk-forward expanding window cross-validation over the training data.
-   - Tunes hyperparameters (e.g., learning rate, number of layers, hidden size, weight decay) using a grid search.
-   - The performance of each combination of the grid search parameters are evaluated using a custom `overfit_score` given by:
-     ```python
-     overfit_score = val_mse + (0.5 * abs(val_mse - train_mse)) / train_mse
-     ```
-   - Plots the box plot of the `overfit_score` for each grid parameters and saves them to `./plots/performance_boxplots.png`. Thereafter the user can choose other hyperparameter grids depending on
-     the plots for further fine tuning of the grid and then decide upon a final combination of hyperparameters for training.
-   - Save the combinations of hyperparameters to `./out/train_test/cv_result.csv` ranked according to lowest to highest overfit scores.
-4. **Plot of cross validation results (`cv_plot`)**
-   - Plots the training and validation loss curves for each fold for a selected rank of model hyperparameters specified in `plot_cv_rank` by the user.
-   - This helps in visually determining whether any kind of overfitting is still present and then the user can move on to the training phase or go back to the grid search phase for further tuning of
-     hyperparameters
-5. **Training(`train`)**
-   - Trains the model with selected rank of hyperparameter combination or a user defined hyperparameter on the full training data and saves it to `./out/final_model.pth`
-   - Evaluates on test data and evaluate root mean square error and R² values
-   - Plots the distribution of predicted and observed temperature data and stores it to `./plots` directory.
-   - Stores the test summaries to `./out/train_test/test_summary.csv` and the train and test predictions to `./out/train_test/train_ts.csv` and `./out/train_test/test_ts.csv` respectively.
-6. **Prediction(`predict`)**
-   - Predicts Temperature from the prediction dataset and stores it to `./out/predicted.csv`
-## Configuration
-The pipeline requires a config.yaml file to specify input data paths, training parameters, and output directories.
-
-Below is a sample structure of config.yaml:
 ```
+├── main.py                     # Main pipeline orchestrator
+├── station_process.py          # Downloading and data imputation
+├── station_cv.py               # Cross-validation and hyperparameter optimization
+├── station_trainer.py          # Model training and evaluation
+├── station_predict.py          # Prediction and forecasting
+├── station_model_util.py       # Core model definitions and utilities
+├── station_scaler.py           # Data preprocessing and scaling
+├── station_extra_utilities.py  # Helper functions and reporting
+├── config.yaml                 # Configuration file (user-created)
+├── main.log                    # Runtime pipeline logs (created here)
+├── data/                       # Data directory
+│   └── processed/              # Processed and scaled data
+├── out/                        # Runtime outputs
+│   ├── models/                 # Trained model weights
+│   ├── train_test/             # Training and testing results
+│   └── predictions/            # Forecast outputs
+├── plots/                      # Auto-generated plots
+│   ├── cv/                     # Cross-validation plots
+│   └── train/                  # Training and evaluation plots
+└── assets/                     # 📊 Curated plots for README
+
+```
+```mermaid
+flowchart TB
+    %% Main pipeline (left–right)
+    subgraph Pipeline["Pipeline Stages"]
+        direction LR
+        A(["Start"]) --> B{"Stage = ?"}
+        B -->|process| P1[/Download Station Data<br/>train & test + optional predict/]
+        P1 --> P2["Preprocess to daily data<br/>gap filling: interpolate / climatology / smart"]
+        P2 --> P3["Scale features<br/>z-score: dwpt,temp,pres<br/>0-1: rhum<br/>wind: magnitude percentile"]
+        P3 --> P4["Save processed & scaled data<br/>./data/processed/*.csv"]
+
+        B -->|optimize_cv| C1["Batch Training Data"]
+        C1 --> C2{"Physics mode?"}
+        C2 -->|none| C3["Hyperparam Optimisation<br/>TPE Sampler, RMSE, Overfit score"]
+        C2 -->|with| C4["Hyperparam Optimisation<br/>with Physics-aware loss"]
+        C2 -->|both| C5["Run Both Modes"]
+        C3 & C4 & C5 --> C6[/Ranked Hyperparameters<br/>./out/train_test/cv_result.csv/]
+        C6 --> C7["CV Diagnostics & Pareto Scatter<br/>./plots/cv/*.png"]
+        C7 --> C8["Generate CV Report<br/>./out/train_test/cv_report.pdf"]
+
+        B -->|train| T1["Batch Train & Test Data"]
+        T1 --> T2{"Training Mode?"}
+        T2 -->|single| T3["Train Single LSTM Model<br/>early stopping<br/>save final_model.pth"]
+        T2 -->|ensemble| T4["Train Ensemble of Models<br/>ranks from cv_result.csv"]
+
+        T3 --> T5["Evaluate on Test Set<br/>metrics.csv, plots, distributions"]
+        T4 --> T6["Evaluate All Members<br/>ensemble_metrics.csv, ensemble plots"]
+
+        T5 --> T7["Generate Single Model Report<br/>./out/train_test/single_model_report.pdf"]
+        T6 --> T8["Generate Ensemble Report<br/>./out/train_test/ensemble_report.pdf"]
+
+        B -->|predict| PR1[/Batch Prediction Data/]
+        PR1 --> PR2{"Prediction Mode?"}
+        PR2 -->|single| PR3["Predict with final_model.pth<br/>save single_prediction.csv"]
+        PR2 -->|ensemble| PR4["Predict with Ensemble<br/>save rank_r_prediction.csv<br/>+ ensemble_prediction.csv"]
+
+        PR3 & PR4 --> O["Outputs<br/>Metrics, CSVs, Reports, Plots<br/>Logs in main.log"]
+        T7 & T8 --> O
+        C8 --> O
+        P4 --> O
+    end
+
+    ALLA(["Stage = all"]):::all
+    ALLA --> ALLP["process"]:::all
+    ALLP --> ALLC["optimize_cv"]:::all
+    ALLC --> ALLT["train"]:::all
+    ALLT --> ALLPR["predict"]:::all
+    ALLPR --> ALLO["outputs"]:::all
+
+    A -.-> ALLA
+
+    %% ===== Styling =====
+    classDef process fill:#E0F7FA,stroke:#006064,stroke-width:3px,color:#004D40,font-size:16px,font-weight:bold
+    classDef cv fill:#FFF3E0,stroke:#E65100,stroke-width:3px,color:#BF360C,font-size:16px,font-weight:bold
+    classDef train fill:#E8F5E9,stroke:#1B5E20,stroke-width:3px,color:#004D40,font-size:16px,font-weight:bold
+    classDef predict fill:#F3E5F5,stroke:#4A148C,stroke-width:3px,color:#311B92,font-size:16px,font-weight:bold
+    classDef output fill:#FFEBEE,stroke:#B71C1C,stroke-width:3px,color:#B71C1C,font-size:16px,font-weight:bold
+    classDef all fill:#ECEFF1,stroke:#000,stroke-width:2px,color:#000,font-size:14px,font-style:italic
+
+    class P1,P2,P3,P4 process
+    class C1,C2,C3,C4,C5,C6,C7,C8 cv
+    class T1,T2,T3,T4,T5,T6,T7,T8 train
+    class PR1,PR2,PR3,PR4 predict
+    class O output
+    style Pipeline fill:transparent,stroke:none
+
+```
+
+## Stages
+
+| Stage            | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| **`process`**    | Retrieve raw station data, apply **smart gap handling** (interpolation vs. climatology), resample to daily resolution, and scale features using **z-score normalization** and **wind magnitude thresholding**. |
+| **`optimize_cv`**| Perform **cross-validation with hyperparameter optimization** using a **TPE Sampler**. Outputs ranked parameter sets, loss curve plots, and a comprehensive **performance report (PDF)** for transparent model selection. |
+| **`train`**      | Train the final model(s) in either **single** or **ensemble** mode. Evaluates performance on both training and test datasets, saves model weights, produces diagnostic plots, and exports a structured **training report (PDF)**. |
+| **`predict`**    | Run inference on unseen future data. Saves deterministic forecasts for single models or **probabilistic predictions with uncertainty spreads** when ensemble mode is enabled. |
+| **`all`**        | Executes the **full workflow sequentially**: preprocessing → CV optimization → training → prediction, generating all intermediate files, plots, and reports. |
+
+## The Model
+
+The core forecasting engine is an **LSTM-based predictor** implemented in PyTorch and designed for configurability and reproducibility.
+
+**Input / Output**  
+- **Inputs (per sample)**: a sequence of `n_step` daily timesteps with 6 features:  
+  `[dwpt, temp, rhum, pres, u, v]` (shape: `(batch_size, n_step, 6)`).
+- **Targets (per sample)**: next-day forecasts for four variables:  
+  `[dwpt, temp, rhum, pres]` (shape: `(batch_size, 4)`) for `t+1`.
+
+**Architecture (high-level)**  
+- Configurable multi-layer **LSTM** (hyperparameters: `n_step`, `hidden_size`, `num_layers`, `dropout`).  
+- The LSTM processes the input sequence and the **final hidden state** (or sequence pooling) is passed to a small fully-connected head that maps to the 4-dimensional output vector.  
+- Output layer is linear (suitable for regression on meteorological variables).  
+- All inputs are scaled (z-score for most features; wind magnitude handled specially) and outputs are inverse-transformed for reporting.
+
+**Humidity / Physics handling**  
+- **Relative humidity (`rhum`) is defined and computed using Buck’s formulation of saturation vapor pressure** [Buck, 1981](#references): in the pipeline `rhum` is derived as  
+  `rhum = e_s(dwpt) / e_s(temp)`  
+  where `e_s(·)` is the saturation vapour pressure computed using Buck’s formula. `rhum` is used as both an input feature and a target variable.  
+- The codebase includes a lightweight physics-consistency option: when enabled, the training objective can include an additional penalty that enforces consistency between the model’s predicted `temp`/`dwpt` and `rhum` computed from those predictions (i.e., a humidity-consistency term based on Buck’s relation). This keeps the model outputs physically coherent while still optimizing standard regression loss.
+
+**Loss & Training**  
+- Primary objective: **MSE** (or equivalent regression loss) on the target vector `[dwpt, temp, rhum, pres]`.  
+- Optional additive physics-consistency penalty (as described above) can be toggled in configuration.  
+- Training is done after consistent scaling; final model weights and metadata are saved for reproducibility.
+
+**Ensemble / Bootstrap**  
+- Ensemble functionality is supported via an **ensemble mode** (multiple members trained with different seeds/hyperparameters).  
+- `bootstrap_ci` currently acts as a **placeholder** for ensemble post-processing (EMOS / probabilistic calibration) and can be extended to produce calibrated probabilistic forecasts and prediction intervals in the future.
+```mermaid
+flowchart TB
+    %% ===================== Model =====================
+    subgraph M["LSTM-based Predictor"]
+        direction TB
+        IN(["Input Sequence<br/>(batch, n_step, input_size)"]):::model
+        LSTM["LSTM Layers<br/>(num_layers, hidden_size)"]:::model
+        FC["Fully Connected Layer<br/>(hidden_size → 4)"]:::model
+        OUT["Predicted Outputs<br/>[dwpt, temp, rhum, pres]"]:::model
+
+        IN --> LSTM --> FC --> OUT
+    end
+
+    %% ===================== Physics-aware Loss =====================
+    subgraph L["Physics-aware Loss Function"]
+        direction TB
+        YP["Predicted Outputs"]:::loss
+        YT["Ground Truth Outputs"]:::loss
+
+        MSE["MSE Loss<br/>(y_pred vs y_true)"]:::loss
+
+        DWPT["Unscale dwpt"]:::loss
+        TEMP["Unscale temp"]:::loss
+        RHUM_P["Predicted rhum"]:::loss
+        RHUM_PHYS["Physics RH = f(temp, dwpt)<br/>es_water equations"]:::loss
+
+        PHYS_LOSS["Physics Loss<br/>MSE(rhum_pred, rhum_phys)"]:::loss
+
+        TOTAL["Total Loss<br/>MSE + λ·PhysicsLoss"]:::loss
+
+        YP --> MSE
+        YT --> MSE
+
+        YP --> DWPT --> RHUM_PHYS
+        YP --> TEMP --> RHUM_PHYS
+        YP --> RHUM_P --> PHYS_LOSS
+        RHUM_PHYS --> PHYS_LOSS
+
+        MSE --> TOTAL
+        PHYS_LOSS --> TOTAL
+    end
+
+    %% ===================== Data Flow =====================
+    OUT --> YP
+
+    %% ===================== Styling =====================
+    classDef model fill:#FFFFFF,stroke:#1565C0,stroke-width:3px,color:#0D47A1,font-weight:bold
+    classDef loss fill:#FFFFFF,stroke:#E65100,stroke-width:3px,color:#BF360C,font-weight:bold
+    style M fill:none,stroke:#1565C0,stroke-width:2px
+    style L fill:none,stroke:#E65100,stroke-width:2px
+
+```
+**Shapes / Example**
+```python
+# Example shapes
+X.shape  # -> (batch_size, n_step, 6)    # [dwpt,temp,rhum,pres,u,v]
+y.shape  # -> (batch_size, 4)             # [dwpt,temp,rhum,pres] for t+1
+```
+1. **Data Preprocessing (`process`)**
+
+   - **Data aggregation**: Downloads or ingests station-level hourly meteorological data and resamples it to daily resolution.  
+   - **Gap handling**: Missing values are treated using a configurable strategy defined in the `config.yaml`:  
+     - *Interpolation* for short gaps.  
+     - *Climatology-based filling* for longer gaps (using historical seasonal averages).  
+     - Or a fixed choice of either method if preferred.  
+   - **Feature engineering**: Computes wind vector components (`u`, `v`) from wind speed and wind direction.  
+   - **Scaling scheme** (feature-specific):  
+     - `[dwpt, temp, pres]` → standardized using z-score scaling.  
+     - `rhum` → rescaled from `[0, 100]` (%) to `[0, 1]`.  
+     - `[u, v]` → scaled relative to a wind magnitude percentile threshold (configurable).  
+   - **Outputs**:  
+     - Processed and scaled daily datasets saved to `./data/processed/` for training, testing, and prediction.  
+     - Scaling parameters (mean, std, thresholds) saved to `./data/processed/scaling_params.csv` for reproducibility and inverse transformations.  
+2. **Cross-Validation and Hyperparameter Optimization (`optimize_cv`)**
+
+   - **Methodology**:  
+     - Uses **walk-forward expanding window cross-validation** with fold-aware weighting.  
+     - Hyperparameter search is performed via a **TPE (Tree-structured Parzen Estimator) sampler**. Early stopping mechanism used to reduce cross validation process time.
+     - At this stage user can either chose to evaluate performance with physics without physics or both by setting `physics_mode` respectively `'none'`,`'with'` or `'both'`  
+   - **Optimization objectives**:  
+     - `mean_rmse`: fold-averaged validation RMSE.  
+     - `overfit_score`: defined as  
+       `overfit_score = |train_loss - val_loss| / train_loss`
+   - **Model ranking**:  
+     - Candidate models are ranked on the **Pareto front** defined by (`mean_rmse`, `overfit_score`).  
+     - Final ranking is based on the **Cartesian distance from the origin** in this two-metric space.  
+   - **Outputs**:  
+     - Ranked parameter sets saved to `./out/train_test/cv_result.csv`.  
+     - Visualizations (loss curves, CV diagnostics) saved to `./plots/cv/`.  
+     - A comprehensive **cross-validation report (PDF)** generated at `./out/train_test/cv_report.pdf`.
+## Training (`train`)
+
+The training stage supports both **single-model** and **ensemble** workflows, with automatic evaluation, plotting, and report generation.
+
+---
+
+### 1. Single Model Mode
+- Trains the Predictor model using either:
+  - User-defined hyperparameters, or  
+  - A selected CV-ranked configuration from `cv_result.csv`.  
+- Produces **training and validation loss curves** for monitoring convergence.  
+- Saves the trained model weights to:  
+  - `./out/models/final_model.pth`  
+- Stores predictions on both training and test sets:  
+  - `./out/train_test/train_ts.csv`  
+  - `./out/train_test/test_ts.csv`  
+- Evaluates model performance:  
+  - Computes **R²** and **RMSE** per output variable (on both training and test sets).  
+  - Results saved to `./out/train_test/metrics.csv`.  
+- Generates plots of observed vs. predicted distributions and time series.
+
+---
+
+### 2. Ensemble Mode
+- Trains multiple models based on a chosen set of ranked hyperparameter configurations from `cv_result.csv`.  
+- Produces **loss curves** for each ensemble member.  
+- Saves trained model weights to:  
+  - `./out/models/rank{r}_model.pth` (where `{r}` is the CV rank).  
+- Stores predictions for each member model:  
+  - `./out/train_test/rank{r}_train_ts.csv`  
+  - `./out/train_test/rank{r}_test_ts.csv`  
+- Computes the **ensemble mean prediction** across members and a **percentile-based uncertainty spread**:  
+  - Results saved to `./out/train_test/ensemble_train_ts.csv` and `./out/train_test/ensemble_test_ts.csv`.  
+- Evaluates ensemble performance:  
+  - Computes **R²** and **RMSE** per output variable for all members and the ensemble mean.  
+  - Results saved to `./out/train_test/ensemble_metrics.csv`.  
+- Generates comparative plots of observed values, individual members, and ensemble mean predictions.
+
+---
+
+### 3. Report Generation
+- Produces a comprehensive PDF summarizing training results:  
+  - `./out/train_test/single_model_report.pdf` (for single mode).  
+  - `./out/train_test/ensemble_report.pdf` (for ensemble mode).  
+- Reports include:
+  - Training/test performance metrics.  
+  - Loss curve visualizations.  
+  - Prediction vs. observation comparisons.  
+  - Ensemble spread analysis (if applicable).
+
+## Prediction (`predict`)
+
+The prediction stage generates forecasts on unseen (future) datasets, supporting both **single-model** and **ensemble** modes.
+
+---
+
+### 1. Single Model Mode
+- Runs inference using the trained Predictor model.  
+- Saves deterministic forecasts to:  
+  - `./out/predictions/single_prediction.csv`  
+
+---
+
+### 2. Ensemble Mode
+- Runs inference for each ensemble member, saving outputs to:  
+  - `./out/predictions/rank{r}_prediction.csv` (where `{r}` is the CV rank of the model).  
+- Computes and saves the **ensemble mean forecast** along with **percentile-based uncertainty bounds** to:  
+  - `./out/predictions/ensemble_prediction.csv`  
+
+---
+
+### 3. Outputs
+- All prediction files include both the **forecasted variables** and associated **timestamps** for traceability.  
+- Ensemble outputs provide an **uncertainty spread** (e.g., 5th–95th percentile) to quantify forecast confidence.
+
+## Configuration
+
+The pipeline requires a `config.yaml` file that specifies:  
+- **Training parameters** (epochs, early stopping, device, etc.).  
+- **Hyperparameter optimization search space** (for TPE-based tuning).  
+- **Mode of operation** (`single` or `ensemble`).  
+- **Preprocessing settings** (gap handling strategies, scaling thresholds).  
+- **Prediction settings** (device, uncertainty quantiles, bootstrap samples).  
+
+---
+
+
+### Example `config.yaml`
+
+```yaml
 # === 1. Data Download Configuration ===
-download_data: true   # Set to true to download fresh data, false to skip
-station_id: '03772'
+download_data: true       # Set to true to fetch new data, false to reuse local files
+station_id: ''       # Station identifier
+lookback: 8               # Number of past days to use for prediction
+
 # === 2. Date Ranges ===
 dates:
   train:
-    start: '1973-01-01'
-    end: '2014-08-07'
+    start: '1990-01-01'
+    end: '2017-03-23'
   test:
-    start: '2014-08-08'
-    end: '2020-12-31'
+    start: '2017-03-24'
+    end: '2023-12-31'
   predict:
-    start: '2021-01-01'
+    start: '2024-01-01'
     end: '2024-12-31'
-# ===3. Filling of missing values
+
+# === 3. Missing Value Handling ===
 filling_parameters:
-  type: 'smart'        # filling missing data by either 'climatology', 'interpolate' or 'smart'
-  gap_threshold: 4     # if type is smart then if continuous gap below gap_threshold will be filled by interpolation if above gap_threshold will use climatology
+  type: 'smart'           # Options: 'climatology', 'interpolate', 'smart'
+  gap_threshold: 4        # For 'smart': gaps ≤ threshold → interpolate, > threshold → climatology
+
 # === 4. Scaling Configuration ===
 scaling:
-  magnitude_threshold_percent: 99.5  # Threshold percentile for wind magnitude
+  wind_threshold_percent: 95   # Percentile threshold for wind magnitude scaling
 
-# === 5. Grid Search Hyperparameters and cross validation ===
-# Accepts either lists ( [a, b, c] ) or tuples ( (a, b, c) ) in YAML
-input_window: 8 # look back time for the LSTM model
-fold_no: 5 # No of folds for expanding window cross validation
-epochs: 300 # Number of epochs for each cross validation testing
-validation_size: 10 # percentage of training data used for validation (default is 10 %)
-early_stop: 15 # early stopping patience , default is 10
-device: 'cuda' # to use 'cpu' or 'cuda' for gpu
-grid_search:
-  learning_rate: [0.0001, 0.0005, 0.001]     # Can also be (0.0001, 0.0005, 0.001)
-  weight_decay: (0.0, 0.0015, 0.0005)        # Treated as tuple if parentheses used can use list and put None for no L2 Regularisation
-  hidden_size: [32, 64, 128]
-  num_layers: (1, 3, 1)
+# === 5. Hyperparameter Optimization and Cross Validation ===
+hyper_optim:
+  device: "cuda"          # Options: "cpu" or "cuda"
+  n_trials: 200           # Number of optimization trials
+  njobs: 4                # Parallel jobs (CPU only)
+  physics_mode: both      # Options: none | with | both
+  val_size: 10            # Validation size (%)
+  k_folds: 7              # Number of CV folds
+  epochs: 300             # Training epochs per trial
+  es_patience: 25         # Early stopping patience (epochs)
 
+  search_space:           # TPE sampler search space
+    hidden_size:
+      type: int
+      low: 1
+      high: 130
+      step: 1
+    num_layers:
+      type: int
+      low: 1
+      high: 3
+      step: 1
+    learning_rate:
+      type: float
+      low: 1e-4
+      high: 0.1
+      log: true
+    weight_decay:
+      type: float
+      low: 1e-4
+      high: 1.0
+      log: true
+    lambda_physics:
+      type: float
+      low: 1e-4
+      high: 10.0
+      log: true
 
-# === 6. Cross-validation Result Selection ===
-plot_cv_rank: 1  # Rank from CV results to be plotted
+  rank: 'all'             # Options: 'all' | list (e.g. [1,3,5]) | tuple (start, end, step)
 
-# === 7. Training Model Configuration ===
+# === 6. Training Configuration ===
 training:
-  use_rank: true  # If true, 'rank' below will be used. If false, use individual params below.
-  rank: 5  # Rank to use from CV results if 'use_rank' is true
+  mode: 'single'          # Options: 'single' or 'ensemble'
+  use_rank: true          # If true → use ranked config below; if false → custom params
+  rank: 1                 # For single mode: integer rank
+                          # For ensemble mode: tuple (start,end,step) or list
 
-  # Used only if 'use_rank' is false
+  hold_out: 12            # % of data held out for early stopping
+  epochs: 500
+  es_patience: 25         # Early stopping patience (epochs)
+  device: "cuda"
+
+  # Used only if 'use_rank' is false (manual override)
   params:
     learning_rate: 0.0005
     weight_decay: 0.0005
     hidden_size: 64
     num_layers: 2
+    lambda_physics: 1.25
 
-# === 8. Prediction Toggle ===
-run_prediction: true  # Set to false to skip prediction
+  # Ensemble mode bootstrap settings
+  B: 1200                 # Number of bootstrap samples
+  low: 2.5                # Lower percentile for uncertainty bounds
+  high: 97.5              # Upper percentile for uncertainty bounds
+
+# === 7. Prediction Configuration ===
+prediction:
+  run_prediction: true
+  device: "cuda"
+  B: 1000                 # Bootstrap samples for uncertainty in ensemble mode
+  low: 2.5                # Lower percentile for uncertainty bounds
+  high: 97.5               # Upper percentile for uncertainty bounds
 ```
 ## Input Requirements
-- Meteostat station ID: Should be valid for the region of interest.
 
-- Automatically downloads:
-  `temp`(temperature), `dwpt`(dewpoint temperature), `pres` (pressure), `rhum` (relative humidity), `wspd` (windspeed), `wdir` (wind direction) (hourly)
-  Converted to:
-  `temp`, `dwpt`, `pres`, `rhum`, `u`, `v` (daily)
-- If user wants to use own data, they can put the data in csv format with the above column with appropriate time index column in the `./data` directory as `station_train_test.csv` and 
-  `station_predict.csv`
-## Outputs
-| Output File          | Description                                   |
-| -------------------- | --------------------------------------------- |
-| `train_test_daily.csv`| Processed daily data for training and testing|
-| `predict_daily.csv`  | Processed daily data for prediction            |
-| `train_scaled.csv`   | Scaled training data                          |
-| `test_scaled.csv`    | Scaled test data                              |
-| `predict_scaled.csv` | Scaled prediction data                        |
-| `scaling_params.csv` | Stored mean/std for normalization             |
-| `cv_stats.csv`       | CV scores for all hyperparameters             |
-| `model_state.pth`    | Saved trained LSTM model                      |
-| `train_ts.csv`       | Observed and predicted values of training     |
-| `test_ts.csv`        | Observed and predicted values of testing      |
-| `test_summary.csv`   | Summary of training and test statistics       |
-| `predicted.csv`      | Final predictions (if run\_prediction = true) |
-| `plots/`             | Loss curves, box plots, performance charts    |
-| `main.log`           | Full pipeline logs                            |
+- **Data sources**: Meteorological or climate-related **station-level datasets** containing at least:  
+  `temperature`, `dew point (dwpt)`, `pressure (pres)`, `relative humidity (rhum)`, `wind speed (wspd)`, and `wind direction (wdir)`.  
+- **Acquisition**: Data can be retrieved automatically (e.g., via Meteostat) or supplied manually as CSVs with matching column names.  
+- **Preprocessing**: Missing values and feature scaling are handled automatically according to the configuration.  
+
+---
+## Outputs & File Savings
+
+All runtime outputs are systematically organized under `./out/` and `./data/` for **reproducibility**, **auditability**, and **ease of review**.  
+Below is a directory-wise summary of the key files and their purposes.
+
+---
+
+### `./data/`
+- `station_train_test.csv` — raw hourly training and testing data  
+- `train_test_daily_filled.csv` — hourly training and testing data with missing values filled  
+- `station_predict.csv` — raw hourly prediction dataset  
+- `predict_daily_filled.csv` — hourly prediction dataset with missing values filled  
+- `climatology.csv` — hourly climatology reference, used for climatology-based gap filling  
+
+---
+
+### `./data/processed/`
+- `train_test_daily.csv` — daily-aggregated and preprocessed training + test data  
+- `train_scaled.csv` — scaled daily training data  
+- `test_scaled.csv` — scaled daily test data  
+- `predict_daily.csv` — daily-aggregated and preprocessed prediction data  
+- `predict_scaled.csv` — scaled daily prediction inputs  
+- `scaling_params.csv` — scaling parameters (mean, std, wind thresholds) for reproducibility and inverse transforms  
+
+---
+
+### `./out/train_test/`
+- **Cross-validation outputs**  
+  - `cv_result.csv` — ranked hyperparameter sets (Pareto front by RMSE & overfit score)  
+  - `cv_report.pdf` — comprehensive CV report with diagnostics and plots  
+
+- **Single-model outputs**  
+  - `train_ts.csv` — training set predictions vs. observations  
+  - `test_ts.csv` — test set predictions vs. observations  
+  - `metrics.csv` — R² and RMSE metrics for both training and test sets  
+  - `single_model_report.pdf` — complete single-model training report  
+
+- **Ensemble outputs**  
+  - `rank{r}_train_ts.csv` — training predictions for ensemble member `{r}`  
+  - `rank{r}_test_ts.csv` — test predictions for ensemble member `{r}`  
+  - `ensemble_train_ts.csv` — ensemble mean + percentile-based uncertainty spread (training set)  
+  - `ensemble_test_ts.csv` — ensemble mean + percentile-based uncertainty spread (test set)  
+  - `ensemble_metrics.csv` — R² and RMSE metrics for all members and the ensemble mean  
+  - `ensemble_report.pdf` — complete ensemble training report  
+
+---
+
+### `./out/models/`
+- `final_model.pth` — trained single-model weights  
+- `rank{r}_model.pth` — trained ensemble member weights  
+
+---
+
+### `./out/predictions/`
+- `single_prediction.csv` — forecasts from the trained single model  
+- `rank{r}_prediction.csv` — forecasts from ensemble member `{r}`  
+- `ensemble_prediction.csv` — ensemble mean forecasts + percentile-based uncertainty spread  
+
+---
+
+### `./plots/cv/`
+- `rank{r}_fold_{k}.png` — training vs. validation loss curves for model `{r}`, fold `{k}`  
+- `scatters.png` — scatter plot of mean overfit scores vs. mean RMSE, color-coded by hyperparameters  
+
+---
+
+### `./plots/train/`
+- **Single-model plots**  
+  - `train_val_loss.png` — training and validation (hold-out) loss curves  
+  - `distributions.png` — observed vs. predicted distributions (training and test sets)  
+  - `time_series.png` — observed vs. predicted time series (training and test sets)  
+
+- **Ensemble plots (per member + aggregated)**  
+  - `rank{r}_train_val_loss.png` — training/validation loss curves for member `{r}`  
+  - `rank{r}_distributions.png` — observed vs. predicted distributions (ensemble member `{r}`)  
+  - `rank{r}_time_series.png` — observed vs. predicted time series (ensemble member `{r}`)  
+
+- **Ensemble aggregate plots**  
+  - `ensemble_distributions.png` — observed vs. predicted distributions of the ensemble mean  
+  - `ensemble_{var}_train_ts.png` — training set time series for variable `{var}` (`dwpt`, `temp`, `rhum`, `pres`) with percentile-based uncertainty spread  
+  - `ensemble_{var}_test_ts.png` — test set time series for variable `{var}` with percentile-based uncertainty spread  
+
+---
 ## Logging and Error Handling
-- The pipeline uses Python’s built-in logging module to record runtime information, warnings, and errors.
 
-- Logs provide detailed progress updates for each pipeline stage (cv, train, predict) and help with troubleshooting.
-
-- Log messages include timestamps and log levels (INFO, WARNING, ERROR).
-
-- If an error occurs, the pipeline outputs meaningful messages and exits gracefully to avoid corrupted outputs.
-
-- Logs are saved to `./main.log` , making it easy to review pipeline execution details.
+- **Centralized logging**: All progress messages, warnings, and errors are captured via Python’s built-in logging framework and written to `./main.log`.  
+- **Stage-specific detail**: Each pipeline stage (preprocessing, CV, training, prediction) records detailed runtime information for traceability.  
+- **Robust error handling**:  
+  - Failures trigger **graceful exits** to prevent corrupted outputs.  
+  - Temporary files are written first and only **atomically renamed** upon successful completion, ensuring consistency and auditability.
 ## Sample Results
-The following is a sample result using `n_step=8 days` and a 5 fold walk-forward, expanding window cross validation approach.
-<h2 id="sample-results">📊 Sample Output Plots</h2>
+
+The following figures illustrate representative results using an `n_step = 8` day look-back window and **7-fold walk-forward expanding window cross-validation**.  
+(Data location and station identifiers are omitted for licensing reasons.)
 
 <p align="center">
-  <img src="performance_boxplots.png" alt="Box plots" width="600"/>
+  <img src="assets/scatters.png" alt="Pareto scatter" width="600"/>
+  <br/>
+  <em>Figure 1: Scatter plot of overfit score vs. RMSE for Pareto-optimal models, with color-coding by hyperparameters.</em>
 </p>
-
-<p align="center"><em>Figure 3: Box plots for the various parameters fed to the grid search.</em></p>
 
 <p align="center">
-  <img src="train_test_distribution.png" alt="Distributions" width="600"/>
+  <img src="assets/ensemble_distributions.png" alt="Ensemble distribution" width="600"/>
+  <br/>
+  <em>Figure 2: Distribution comparison of ensemble mean forecasts vs. observations on training and test sets.</em>
 </p>
-
-<p align="center"><em>Figure 4: Histogram comparison of predicted vs. observed temperatures for both training and testing phases.</em></p>
 
 <p align="center">
-  <img src="train_test_ts.png" alt="Individual time series" width="600"/>
+  <img src="assets/ensemble_dwpt_test_ts.png" alt="Dew point test" width="600"/>
+  <br/>
+  <em>Figure 3: Ensemble mean time series of dew point temperature on the test set, with quantile-based uncertainty bands.</em>
 </p>
 
-<p align="center"><em>Figure 5: Time series of observed vs. predicted temperature for the training and testing periods .</em></p>
+<p align="center">
+  <img src="assets/ensemble_temp_test_ts.png" alt="Temperature test" width="600"/>
+  <br/>
+  <em>Figure 4: Ensemble mean time series of temperature on the test set, with quantile-based uncertainty bands.</em>
+</p>
+
+<p align="center">
+  <img src="assets/ensemble_rhum_test_ts.png" alt="Relative humidity test" width="600"/>
+  <br/>
+  <em>Figure 5: Ensemble mean time series of relative humidity on the test set, with quantile-based uncertainty bands.</em>
+</p>
+
+<p align="center">
+  <img src="assets/ensemble_pres_test_ts.png" alt="Pressure test" width="600"/>
+  <br/>
+  <em>Figure 6: Ensemble mean time series of surface pressure on the test set, with quantile-based uncertainty bands.</em>
+</p>
+
+---
 
 ## Data Sources
 
-This project uses historical weather data from [Meteostat](https://meteostat.net), retrieved via their [Python API](https://dev.meteostat.net/python/).  
-The data itself is **not included** in this repository to keep it lightweight and to comply with data licensing policies.
+This project is designed to work with station level **meteorological and climate datasets**, such as:  
+- Public sources (e.g., [Meteostat](https://meteostat.net))  
+- Proprietary station-level datasets (e.g., automated weather station feeds), provided they use the expected variable naming conventions  
 
-### Referenced Dataset
+Data is **not bundled with the repository** due to licensing restrictions and file size considerations.
 
-- **Station:** London Heathrow Airport (EGLL)  
-- **Source:** [Meteostat Station Data](https://meteostat.net/en/station/03772)
+---
+
+## Notes on Implementation
+
+- **`bootstrap_ci`** — currently implemented as a placeholder for future **EMOS integration** (ensemble model output statistics / probabilistic calibration).  
+- **`grid` function** — retained as a **legacy utility** for backward compatibility; not required in the current pipeline.  
+## 📚 References
+
+- Buck, A. L. (1981). *New Equations for Computing Saturation Vapor Pressure*.  
+  Journal of Applied Meteorology and Climatology, **20**(12), 1527–1532.  
+  [https://doi.org/10.1175/1520-0450(1981)020<1527:NEFCVP>2.0.CO;2](https://doi.org/10.1175/1520-0450(1981)020<1527:NEFCVP>2.0.CO;2)

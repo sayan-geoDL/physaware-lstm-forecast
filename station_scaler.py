@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed May 28 15:01:54 2025
+station_scaler.py
 
-@author: sayan
+Scales daily meteorological data for LSTM modeling, handling wind components, relative 
+humidity, and other variables. Saves both the scaled dataset and normalization parameters 
+for consistent training and prediction.
+
+Includes the `scaler` function to:
+- Compute and apply standardization during training.
+- Reuse saved scaling statistics during prediction.
+- Cap wind magnitude and normalize u/v components.
+- Convert relative humidity to [0,1] range.
 """
 
 import pandas as pd

@@ -9,7 +9,15 @@ out/*
 !out/.gitkeep
 out/train_test/*
 !out/train_test/.gitkeep
+out/models/*
+!out/models/.gitkeep
+out/predictions/*
+!out/predictions/.gitkeep
 
 # Ignore everything in plots but not .gitkeep
 plots/*
 !plots/.gitkeep
+plots/train/*
+!plots/train/.gitkeep
+plots/cv/*
+!plots/cv/*

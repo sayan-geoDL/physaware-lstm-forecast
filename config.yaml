@@ -1,16 +1,17 @@
 # === 1. Data Download Configuration ===
-download_data: true   # Set to true to download fresh data, false to skip
-station_id: '03772'
+download_data: True   # Set to true to download fresh data, false to skip
+station_id: ''
+lookback: 8        # Number of past days to consider for prediction
 # === 2. Date Ranges ===
 dates:
   train:
-    start: '1973-01-01'
-    end: '2014-08-07'
+    start: '1990-01-01'
+    end: '2017-03-23'
   test:
-    start: '2014-08-08'
-    end: '2020-12-31'
+    start: '2017-03-24'
+    end: '2023-12-31'
   predict:
-    start: '2021-01-01'
+    start: '2024-01-01'
     end: '2024-12-31'
 # ===3. Filling of missing values
 filling_parameters:
@@ -18,37 +19,74 @@ filling_parameters:
   gap_threshold: 4     # if type is smart then if continuous gap below gap_threshold will be filled by interpolation if above gap_threshold will use climatology
 # === 4. Scaling Configuration ===
 scaling:
-  magnitude_threshold_percent: 99.5  # Threshold percentile for wind magnitude
+  wind_threshold_percent: 95  # Threshold percentile for wind magnitude
 
-# === 5. Grid Search Hyperparameters and cross validation ===
-# Accepts either lists ( [a, b, c] ) or tuples ( (a, b, c) ) in YAML
-input_window: 8 # look back time for the LSTM model
-fold_no: 5 # No of folds for expanding window cross validation
-epochs: 300 # Number of epochs for each cross validation testing
-validation_size: 10 # percentage of training data used for validation (default is 10 %)
-early_stop: 15 # early stopping patience , default is 10
-device: 'cuda' # to use 'cpu' or 'cuda' for gpu
-grid_search:
-  learning_rate: [0.0001, 0.0005, 0.001]     # Can also be (0.0001, 0.0005, 0.001)
-  weight_decay: (0.0, 0.0015, 0.0005)        # Treated as tuple if parentheses used can use list and put None for no L2 Regularisation
-  hidden_size: [32, 64, 128]
-  num_layers: (1, 3, 1)
+# === 5. Hyperparameter Optimization and Cross Validation ===
+hyper_optim:
+  device: "cuda"           # "cpu" or "cuda"
+  n_trials: 200            # number of trials for each run
+  njobs: 4                 # parallel jobs ('cpu' only)
+  physics_mode: both       # options: none | with | both
+  val_size: 10             # validation size (%)
+  k_folds: 7               # CV folds
+  epochs: 300
+  es_patience: 25
+  
 
-
-# === 6. Cross-validation Result Selection ===
-plot_cv_rank: 1  # Rank from CV results to be plotted
-
-# === 7. Training Model Configuration ===
+  search_space:
+    hidden_size:
+      type: int
+      low: 1
+      high: 130
+      step: 1
+    num_layers:
+      type: int
+      low: 1
+      high: 3
+      step: 1
+    learning_rate:
+      type: float
+      low: 1e-4
+      high: 0.1
+      log: true
+    weight_decay:
+      type: float
+      low: 1e-4
+      high: 1.0
+      log: true
+    lambda_physics:
+      type: float
+      low: 1e-4
+      high: 10.0
+      log: true
+  rank: 'all'  # 'all' |list of ranks e.g. [1,3,5]| tuple (start, end, step) e.g. (1,12,2)
+# === 6. Training Model Configuration ===
 training:
+  mode: 'single'  # 'single' or 'ensemble'
   use_rank: true  # If true, 'rank' below will be used. If false, use individual params below.
-  rank: 5  # Rank to use from CV results if 'use_rank' is true
+  rank: 1  # If mode is 'single' and use_rank is true, use int. 
+                  #if mode is 'ensemble' use tuple (start, end, step) or list 
+                  
+  hold_out: 12  # percentage of data to hold out for early stopping
+  epochs: 500
+  es_patience: 25 # early stopping patience for hold_out set
+  device: "cuda"           # "cpu" or "cuda" for gpu
 
-  # Used only if 'use_rank' is false
+  # Used only if 'use_rank' is false and 'single' mode is selected
   params:
     learning_rate: 0.0005
     weight_decay: 0.0005
     hidden_size: 64
     num_layers: 2
+    lambda_physics: 1.25
+  B: 1200  # Bootstrap samples for uncertainty for 'ensemble' mode
+  low: 2.5  # Lower percentile for uncertainty for 'ensemble' mode
+  high: 97.5  # Upper percentile for uncertainty 'ensemble' mode
 
 # === 8. Prediction Toggle ===
-run_prediction: true  # Set to false to skip prediction
+prediction:
+  run_prediction: true  # Set to true for predicting on unseen data, false to skip
+  device: "cuda"           # "cpu" or "cuda"
+  B: 1000  # Bootstrap samples for uncertainty for 'ensemble' mode
+  low: 2.5  # Lower percentile for uncertainty for 'ensemble' mode
+  high: 97.5  # Upper percentile for uncertainty 'ensemble' mode

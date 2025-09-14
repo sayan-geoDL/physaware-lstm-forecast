@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon May 26 14:52:15 2025
+station_preprocess.py
 
-@author: sayan
+Preprocessing utilities for Meteostat weather station data.
+
+Features:
+- Downloads raw hourly weather observations from the Meteostat API.
+- Gap-fills missing values using climatology, interpolation, or a hybrid "smart" method.
+- Converts wind speed/direction into zonal (u) and meridional (v) components.
+- Aggregates hourly records into daily means for modeling.
+- Saves intermediate (hourly filled) and final (daily averaged) CSVs for downstream use.
+
+Intended as the first step in the LSTM weather forecasting pipeline.
 """
 
 from datetime import datetime
@@ -15,32 +24,40 @@ import numpy as np
 ################## download data if necessary #################################
 def download_data(station_id,start_date,end_date,name,sav_dir='./data'):
     """
-    Download hourly weather data for a given station and time range using Meteostat API.
-
-    Saves the data to a CSV file in the specified directory with the filename `{name}.csv`.
+    Download hourly weather data for a given station using the Meteostat API.
 
     Parameters
     ----------
     station_id : str or int
-        Meteostat station ID (e.g., '03772'). Accepts either string or integer format.
+        Meteostat station identifier (e.g., '70261'). Accepts integer or string.
     start_date : str
         Start date in 'YYYY-MM-DD' format.
     end_date : str
         End date in 'YYYY-MM-DD' format.
     name : str
-        Name to assign to the saved CSV file (without extension).
+        Base name for the CSV file to save the downloaded data.
     sav_dir : str, optional
-        Directory where the data CSV will be saved. Default is './data'.
+        Directory to save the CSV file. Default is './data'.
 
     Returns
     -------
     pandas.DataFrame
-        Hourly weather data for the specified station and time range.
+        Hourly weather data with columns such as ['temp', 'dwpt', 'pres', 'rhum', 'wspd', 'wdir'].
+
+    Saves
+    -----
+    {sav_dir}/{name}.csv : CSV
+        Hourly weather data stored for future use.
 
     Raises
     ------
     ValueError
-        If station_id is neither a string nor an integer.
+        If `station_id` is not a string or integer.
+
+    Notes
+    -----
+    - This function automatically converts integer station IDs to strings.
+    - Creates the `sav_dir` if it does not exist.
     """
     start_date=datetime.strptime(start_date,'%Y-%m-%d')
     end_date=datetime.strptime(end_date,'%Y-%m-%d')
@@ -60,52 +77,54 @@ def process_to_daily(name_in,name_out,data_path='./data/processed',
                      phase='train',
                      gap_threshold=3):
     """
-    Process raw hourly weather data into daily-averaged data with missing value handling.
+    Convert raw hourly weather data into daily-averaged, analysis-ready data with gap-filling.
 
-    The function:
-    - Fills missing values using climatology, interpolation, or a hybrid 'smart' strategy.
-    - Converts wind speed and direction into zonal ('u') and meridional ('v') wind components.
-    - Aggregates hourly data to daily means.
-    - Saves intermediate and final outputs for reuse.
+    Performs:
+    - Missing value handling (climatology, interpolation, or hybrid 'smart' strategy)
+    - Wind speed/direction conversion to zonal (u) and meridional (v) components
+    - Aggregation to daily means
+    - Optional climatology computation for training
 
     Parameters
     ----------
     name_in : str
-        Name of the raw input file (without '.csv') located in './data/'.
+        Base name of the input CSV file located in './data/' (without '.csv').
     name_out : str
-        Base name of the output files (without '.csv').
+        Base name for output CSV files (without '.csv').
     data_path : str, optional
-        Directory where the processed daily file will be saved. Default is './data/processed'.
+        Directory to save the daily processed CSV. Default is './data/processed'.
     fill_method : str, optional
-        Method for filling missing values. One of:
-        - 'climatology': Fill using long-term hourly climatology.
-        - 'interpolate': Use time-based interpolation.
-        - 'smart'      : Interpolate short gaps, fill long gaps with climatology.
-        Default is 'smart'.
+        Method to fill missing values. Options:
+        - 'climatology' : fill gaps using long-term hourly averages
+        - 'interpolate' : time-based interpolation
+        - 'smart'       : interpolate short gaps, use climatology for long gaps (default)
     phase : str, optional
-        Either 'train' (compute and save climatology) or 'predict' (use existing climatology).
+        Mode of operation:
+        - 'train'   : compute and save climatology for filling
+        - 'predict' : use existing climatology CSV for filling
         Default is 'train'.
     gap_threshold : int, optional
-        For 'smart' filling: maximum length (in hours) of a gap to be interpolated.
-        Gaps larger than this will be filled using climatology. Default is 3.
+        Maximum gap (in hours) for interpolation in 'smart' method; larger gaps use climatology.
+        Default is 3.
 
     Returns
     -------
     pandas.DataFrame
-        Daily-averaged DataFrame after gap-filling and wind component conversion.
+        Daily-averaged DataFrame with columns ['temp', 'dwpt', 'pres', 'rhum', 'u', 'v'].
 
     Saves
     -----
-    - './data/{name_out}_filled.csv': Hourly data after filling and conversion.
-    - '{data_path}/{name_out}.csv'  : Final daily-averaged output file.
-    - './data/climatology.csv'      : Climatological averages (if phase == 'train').
+    - './data/{name_out}_filled.csv' : hourly data after gap-filling and wind conversion
+    - '{data_path}/{name_out}.csv'   : daily-averaged output
+    - './data/climatology.csv'       : hourly climatology if phase='train'
 
     Notes
     -----
-    - Input data must contain at least these columns: ['temp', 'dwpt', 'pres', 'rhum', 'wspd', 'wdir'].
-    - Wind direction (`wdir`) and speed (`wspd`) are transformed into `u` and `v`, then dropped.
-    - All numeric values are rounded to 2 decimal places.
-    - Resampling is done with hourly frequency for gap detection and daily for final output.
+    - Input must contain at least: ['temp', 'dwpt', 'pres', 'rhum', 'wspd', 'wdir'].
+    - Wind speed/direction are transformed into u/v components and original columns dropped.
+    - Data is rounded to 2 decimals.
+    - Hourly resampling is performed for gap handling; daily resampling for final output.
+    - 'smart' filling interpolates short gaps and uses climatology for longer gaps.
     """
     infile=os.path.join('./data',name_in+'.csv')
     filled_names=os.path.join('./data',name_out+'_filled.csv')
@@ -166,5 +185,6 @@ def process_to_daily(name_in,name_out,data_path='./data/processed',
     filename=os.path.join(data_path,name_out+'.csv')
     daily_df.to_csv(filename)
     return daily_df
-#download_data('03772', '1973-01-01', '2024-12-31')
+if __name__ == "__main__":
+    download_data('70261', '1946-01-01', '2024-12-31',name='fairbanks')
 #df=process_to_daily(fill_method='smart',gap_threshold=3)
