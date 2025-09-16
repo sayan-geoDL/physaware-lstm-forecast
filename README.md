@@ -215,7 +215,7 @@ flowchart TB
     %% ===================== Model =====================
     subgraph M["LSTM-based Predictor"]
         direction TB
-        IN(["Input Sequence<br/>(batch, n_step, input_size)"]):::model
+        IN(["Input Sequence<br/>(batch, n_step, 6[dwpt,temp,rhum,pres,u,v])"]):::model
         LSTM["LSTM Layers<br/>(num_layers, hidden_size)"]:::model
         FC["Fully Connected Layer<br/>(hidden_size → 4)"]:::model
         OUT["Predicted Outputs<br/>[dwpt, temp, rhum, pres]"]:::model
