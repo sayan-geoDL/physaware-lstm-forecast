@@ -47,8 +47,8 @@ Each step is modularized and orchestrated via `main.py`.
 
 ## 💡 Skills Demonstrated
 
-- Time Series Forecasting with Custom Neural Predictors (LSTM-based sequence model)  
-- Model Architecture Design & Visualization (LSTM encoder → dense regression head → multi-output forecasting)  
+- Time Series Forecasting with Custom Neural Predictors (Long Short-Term Memory (LSTM)-based sequence model)  
+- Model Architecture Design & Visualization (LSTM sequence encoder (last hidden state) → dense regression head → multi-output forecasting.)  
 - Walk-Forward Expanding Window Cross-Validation  
 - Smart Handling of Missing Meteorological Data (interpolation, climatology, adaptive)  
 - Physics-Aware Loss Function Design  
@@ -182,7 +182,7 @@ flowchart TB
 
 ## The Model
 
-The core forecasting engine is an **LSTM-based predictor** implemented in PyTorch and designed for configurability and reproducibility.
+The core forecasting engine is a **Long Short-Term Memory (LSTM)-based predictor** implemented in PyTorch and designed for configurability and reproducibility.
 
 **Input / Output**  
 - **Inputs (per sample)**: a sequence of `n_step` daily timesteps with 6 features:  
