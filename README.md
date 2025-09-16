@@ -23,6 +23,7 @@ The framework is designed for **insurance and reinsurance applications**, where 
 - [Data Sources](#data-sources)
 - [Notes on Implementation](#notes-on-implementation)
 - [References](#references)
+- [Third-Party Licenses ](#third-party-licenses)
 
 ---
 
@@ -643,8 +644,24 @@ Data is **not bundled with the repository** due to licensing restrictions and fi
 
 - **`bootstrap_ci`** — currently implemented as a placeholder for future **EMOS integration** (ensemble model output statistics / probabilistic calibration).  
 - **`grid` function** — retained as a **legacy utility** for backward compatibility; not required in the current pipeline.  
-## 📚 References
+## References
 
 - Buck, A. L. (1981). *New Equations for Computing Saturation Vapor Pressure*.  
   Journal of Applied Meteorology and Climatology, **20**(12), 1527–1532.  
   [https://doi.org/10.1175/1520-0450(1981)020<1527:NEFCVP>2.0.CO;2](https://doi.org/10.1175/1520-0450(1981)020<1527:NEFCVP>2.0.CO;2)
+
+## Third-Party Licenses
+
+This project builds upon several open-source libraries. Each library is governed by its own license:
+
+| Package       | Version Range | License      | License Link |
+|---------------|---------------|--------------|--------------|
+| **PyYAML**    | >=6.0,&lt;7.0    | MIT          | [PyYAML License](https://github.com/yaml/pyyaml/blob/main/LICENSE) |
+| **matplotlib**| >=3.8,&lt;4.0    | Matplotlib License (BSD-compatible) | [Matplotlib License](https://matplotlib.org/stable/users/project/license.html) |
+| **meteostat** | >=1.7,&lt;2.0    | MIT          | [Meteostat License](https://github.com/meteostat/meteostat-python/blob/main/LICENSE) |
+| **numpy**     | >=1.26,&lt;2.0   | BSD-3-Clause | [NumPy License](https://numpy.org/doc/stable/license.html) |
+| **optuna**    | >=4.4,&lt;5.0    | MIT          | [Optuna License](https://github.com/optuna/optuna/blob/master/LICENSE) |
+| **pandas**    | >=2.2,&lt;3.0    | BSD-3-Clause | [Pandas License](https://pandas.pydata.org/docs/license.html) |
+| **psutil**    | >=5.9,&lt;6.0    | BSD-3-Clause | [psutil License](https://github.com/giampaolo/psutil/blob/master/LICENSE) |
+| **reportlab** | >=4.4,&lt;5.0    | BSD-3-Clause (free for open source) | [ReportLab License](https://www.reportlab.com/devfaq/#license) |
+| **torch (PyTorch)** | >=2.6,&lt;3.0 | BSD-3-Clause | [PyTorch License](https://github.com/pytorch/pytorch/blob/main/LICENSE) |
