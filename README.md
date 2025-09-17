@@ -658,10 +658,10 @@ This project builds upon several open-source libraries. Each library is governed
 |---------------|---------------|--------------|--------------|
 | **PyYAML**    | >=6.0,&lt;7.0    | MIT          | [PyYAML License](https://github.com/yaml/pyyaml/blob/main/LICENSE) |
 | **matplotlib**| >=3.8,&lt;4.0    | Matplotlib License (BSD-compatible) | [Matplotlib License](https://matplotlib.org/stable/users/project/license.html) |
-| **meteostat** | >=1.7,&lt;2.0    | MIT          | [Meteostat License](https://github.com/meteostat/meteostat-python/blob/main/LICENSE) |
+| **meteostat** | >=1.7,&lt;2.0    | MIT          | [Meteostat License](https://github.com/meteostat/meteostat-python/blob/master/LICENSE) |
 | **numpy**     | >=1.26,&lt;2.0   | BSD-3-Clause | [NumPy License](https://numpy.org/doc/stable/license.html) |
 | **optuna**    | >=4.4,&lt;5.0    | MIT          | [Optuna License](https://github.com/optuna/optuna/blob/master/LICENSE) |
-| **pandas**    | >=2.2,&lt;3.0    | BSD-3-Clause | [Pandas License](https://pandas.pydata.org/docs/license.html) |
+| **pandas**    | >=2.2,&lt;3.0    | BSD-3-Clause | [Pandas License](https://github.com/pandas-dev/pandas/blob/main/LICENSE) |
 | **psutil**    | >=5.9,&lt;6.0    | BSD-3-Clause | [psutil License](https://github.com/giampaolo/psutil/blob/master/LICENSE) |
-| **reportlab** | >=4.4,&lt;5.0    | BSD-3-Clause (free for open source) | [ReportLab License](https://www.reportlab.com/devfaq/#license) |
+| **reportlab** | >=4.4,&lt;5.0    | BSD-3-Clause (free for open source) | [ReportLab License](https://opensource.org/license/bsd-3-clause) |
 | **torch (PyTorch)** | >=2.6,&lt;3.0 | BSD-3-Clause | [PyTorch License](https://github.com/pytorch/pytorch/blob/main/LICENSE) |
