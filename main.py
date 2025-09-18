@@ -70,9 +70,20 @@ def process(config):
     logger.info("Preprocessing and scaling training and testing data...")
     station_preprocess.process_to_daily(
         name_in='station_train_test',
-        name_out='train_test_daily',
+        name_out='train',
+        start_date=config['dates']['train']['start'],
+        end_date=config['dates']['train']['end'],
         fill_method=config['filling_parameters']['type'],
         phase='train',
+        gap_threshold=config['filling_parameters']['gap_threshold']
+    )
+    station_preprocess.process_to_daily(
+        name_in='station_train_test',
+        name_out='test',
+        start_date=config['dates']['test']['start'],
+        end_date=config['dates']['test']['end'],
+        fill_method=config['filling_parameters']['type'],
+        phase='predict',
         gap_threshold=config['filling_parameters']['gap_threshold']
     )
 
@@ -80,7 +91,7 @@ def process(config):
         strt=config['dates']['train']['start'],
         end=config['dates']['train']['end'],
         phase='train',
-        inp='./data/processed/train_test_daily.csv',
+        inp='./data/processed/train_daily.csv',
         outp='./data/processed/train_scaled.csv',
         wspd_perc=config['scaling']['wind_threshold_percent']
     )
@@ -89,7 +100,7 @@ def process(config):
         strt=config['dates']['test']['start'],
         end=config['dates']['test']['end'],
         phase='predict',
-        inp='./data/processed/train_test_daily.csv',
+        inp='./data/processed/test_daily.csv',
         outp='./data/processed/test_scaled.csv'
     )
 
@@ -97,7 +108,7 @@ def process(config):
         logger.info("Preprocessing and scaling prediction data...")
         station_preprocess.process_to_daily(
             name_in='station_predict',
-            name_out='predict_daily',
+            name_out='predict',
             phase='predict',
             fill_method=config['filling_parameters']['type'],
             gap_threshold=config['filling_parameters']['gap_threshold']
